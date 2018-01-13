@@ -1,0 +1,46 @@
+html {
+   margin: 0px;
+   height: 100%;
+   width: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.verticalWrapper {
+  height: 100%;
+}
+
+form {
+  display: block;
+}
+
+form input {
+  display: block;
+}
+
+form button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.formWrapper
+
+.leftWrapp {
+  height: 100%;
+  width: 100%;
+}
