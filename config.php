@@ -1,10 +1,21 @@
 <?php
 
-$servername = "localhost";
+$servername = "mysql:host=localhost:3306;dbname=camagru;charset=utf8";
 $username = "root";
-$password = "toto123";
-$dbname = "camagru";
+$password = "root";
 
-$db = new mysqli($servername, $username, $password, $dbname);
+try
+{
+	// On se connecte à MySQL
+  $db = new PDO($servername, $username, $password);
+  // $db->setAttribute(PDO::ERRMODE_EXCEPTION);
+
+}
+catch(Exception $e)
+{
+	// En cas d'erreur, on affiche un message et on arrête tout
+  echo "toto";
+  die('Erreur : '.$e->getMessage());
+}
 
 ?>
