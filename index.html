@@ -2,38 +2,34 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="font.css">
     <meta charset="utf-8">
+    <script type="text/javascript" src="login.js">
+    </script>
     <title></title>
   </head>
   <body>
     <!-- Subscription Form -->
-    <div class="verticalWrapper">
-
-    </div>
-    <div class="formWrapper">
-      <div class="leftWrapp">
+    <div class="wrapper">
+      <div class="backgroundImage">
 
       </div>
-      SUBSCRIB
-      <form action="form.php" method="post">
-        <input name="email" class="email" type="text" placeholder="Mail address">
-        <input name="username" class="username" type="text" placeholder="Username">
-        <input name="password" class="password" type="password" placeholder="Password">
-        <button type="submit" class="btn_email">Send</button>
-      </form>
-      CONNEXION
-      <form action="login.php" method="post">
-        <input name="username" class="username" type="text" placeholder="Username">
-        <input name="password" class="password" type="password" placeholder="Password">
-        <button type="submit" class="btn_email">Send</button>
-      </form>
-      <div class="leftWrapp">
+      <div class="signUpContainer">
+        <div class="signUpForm">
 
+          <h2>SIGN UP</h2>
+          <form method="post">
+            <input id="email" name="email" class="email" type="text" placeholder="Mail address">
+            <input id="username" name="username" class="username" type="text" placeholder="Username">
+            <input id="password" name="password" class="password" type="password" placeholder="Password">
+            <input id="confirmPassword" name="confirmPassword" class="password" type="password" placeholder="Confirm the Password">
+            <p id="errorSignupMsg" class="errorMessage">Error</p>
+            <button onClick="gestionClic()" class="submitButton" type="button" class="btn_email">SEND</button>
+          </form>
+        </div>
       </div>
     </div>
-    <div class="verticalWrapper">
 
-    </div>
     <!-- End Subscription Form -->
   </body>
 </html>
