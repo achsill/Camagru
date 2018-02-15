@@ -1,0 +1,55 @@
+html {
+   margin: 0px;
+   height: 100%;
+   width: 100%;
+}
+
+body {
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: #f9f9fa;
+}
+
+.modalConfirmation {
+  position: absolute;
+  left: calc(50% - 300px);
+  top: calc(50% - 225px);
+  height: 450px;
+  width: 600px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
+  padding: 45px 25px 45px 25px;
+  background-color: #fff;
+  display: flex;           /* establish flex container */
+     flex-direction: column;  /* make main axis vertical */
+     justify-content: center; /* center items vertically, in this case */
+     align-items: center; 
+}
+
+.sucess .error {
+  align-self: flex-start;
+  text-align: center;
+}
+
+.sucess {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+
+.redirectButton  {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 30px;
+  background-color: #2ba7c4;
+  border: none;
+  margin-top: 8px;
+  color: white;
+  font-family: OpenSans-Regular;
+  align-self:flex-end;
+}
