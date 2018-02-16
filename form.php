@@ -99,7 +99,7 @@ class User {
 
 
 // TO CHANGE
-$servername = "mysql:dbname=camagru;host=localhost:3306";
+$servername = "mysql:dbname=camagru;host=localhost:3307";
 $username = "root";
 $password = "root";
 

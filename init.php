@@ -1,7 +1,7 @@
 <?php
-$servername = "mysql:host=localhost:3306";
+$servername = "mysql:host=localhost:3307";
 $username = "root";
-$password = "root";
+$password = "rootroot";
 
 // Verifier si la db n'existe pas, si oui pas besoin de la créer !!!!
 try {

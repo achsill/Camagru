@@ -9,3 +9,31 @@
     height: 375px;
     background-color: #666;
 }
+
+.steak {
+  background: url('savedImages/Goku2.png') no-repeat top left transparent;
+  width: 250px;
+  height: 250px;
+  position: relative;
+}
+
+.steak video {
+  position: absolute;
+  top: 30px;
+  left:40px;
+    z-index: 5;
+}
+
+
+
+.steak:after {
+  content: ' ';
+  display: block;
+  background: url('savedImages/Goku2.png') no-repeat top left transparent;
+  width: 100%;
+  height:100%;
+  top:0;
+  left:0;
+  position: absolute;
+  z-index:10;
+}
