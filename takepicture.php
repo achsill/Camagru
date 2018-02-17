@@ -7,7 +7,7 @@
 	$file = UPLOAD_DIR . uniqid() . '.png';
 	$success = file_put_contents($file, $data);
 
-  $sourceImage = './user_pictures/lunettes_mid.png';
+  $sourceImage = './filters_images/lunettes_mid.png';
 
   $destImage = $file;
 
