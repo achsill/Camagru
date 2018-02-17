@@ -22,9 +22,9 @@ body {
   padding: 45px 25px 45px 25px;
   background-color: #fff;
   display: flex;           /* establish flex container */
-     flex-direction: column;  /* make main axis vertical */
-     justify-content: center; /* center items vertically, in this case */
-     align-items: center; 
+  flex-direction: column;  /* make main axis vertical */
+  justify-content: center; /* center items vertically, in this case */
+  align-items: center; 
 }
 
 .sucess .error {

@@ -1,7 +1,10 @@
 //Handle handleAJAX
 
 var http; // Notre objet XMLHttpRequest
-
+var listOfPictures = [];
+var numberOfPictures = 0;
+var limitPicture = 0;
+var shift = 0;
 function createRequestObject()
 {
     var http;
@@ -33,9 +36,10 @@ function handleAJAXReturn()
     {
         if (http.status == 200)
         {
-          console.log(http.responseText);
-          document.getElementById('matof').src = http.responseText;
-
+          listOfPictures.push('<img id="' + listOfPictures.length + '" class="finalPicture" src="' + http.responseText + '" alt="" onclick=selectPicture(' + listOfPictures.length + ')>');
+          numberOfPictures = listOfPictures.length - 1;
+          limitPicture = numberOfPictures - 5;
+          refreshCarousel(numberOfPictures, limitPicture);
         }
         else
         {
@@ -44,6 +48,39 @@ function handleAJAXReturn()
     }
 }
 
+function selectPicture(id) {
+  var img = document.getElementById(id);
+  document.getElementById('imageShowed').src = img.src
+  document.getElementById('imageShowed').style.display = 'block';
+}
+
+function closeImage() {
+  document.getElementById('imageShowed').style.display = 'none';
+}
+
+function prevCarousel() {
+  if (shift > 0)
+    shift--;
+  refreshCarousel(numberOfPictures - shift, limitPicture - shift);
+}
+
+function nextCarousel(la) {
+  if (shift + 3 < numberOfPictures)
+    shift++;
+  refreshCarousel(numberOfPictures - shift, limitPicture - shift);
+}
+
+function refreshCarousel(i, max) {
+  var showedPictures = '';
+  while (i > max) {
+    if (i == -1)
+      break ;
+    showedPictures = showedPictures + listOfPictures[i];
+    i--;
+  }
+  var x =document.getElementById("carousel").innerHTML;
+  document.getElementById('carousel').innerHTML =  showedPictures;
+}
 
 //Handle Camera
 
@@ -66,7 +103,7 @@ var context = canvas.getContext('2d');
 
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", function() {
-	context.drawImage(video, 0, 0, 460, 350);
+	context.drawImage(video, 0, 0, 500, 375);
   var image = new Image();
   image.src = canvas.toDataURL("image/png");
   sendPicture(image.src);

@@ -8,12 +8,23 @@
     <title></title>
   </head>
   <body>
-    <div class="steak">
-      <video id="video" width="460" height="350" autoplay></video>
+    <div id="takePictureModal">
+      <img onclick="closeImage()" id="close" src="img/close.png">
+      <img id="imageShowed" src="">
+      <div class="videoContainer">
+        <video id="video" autoplay></video>
+        <div id="filter">
+          <img src="filters_images/lunettes.png" alt="">
+        </div>
+      </div>
+      <img src="img/prev_arrow.png" onclick=prevCarousel(this.src) id="prevCarousel">
+        <div id="carousel">
+          <img id="finalPicture" src="" alt="">
+        </div>
+      <img src="img/next_arrow.png" onclick=nextCarousel() id="nextCarousel">
+        <button id="snap">Snap Photo</button>
     </div>
-    <button id="snap">Snap Photo</button>
-    <canvas id="canvas" width="460" height="350"></canvas>
-    <img id="matof" src="" alt="">
+    <canvas id="canvas" width="500" height="375"></canvas>
     <script type="text/javascript" src="takepicture.js">
     </script>
   </body>

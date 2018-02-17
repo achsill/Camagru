@@ -1,16 +1,14 @@
 <?php
-  define('UPLOAD_DIR', 'img/');
+  define('UPLOAD_DIR', 'user_pictures/');
 	$img = $_POST['image'];
 	$img = str_replace('data:image/png;base64,', '', $img);
 	$img = str_replace(' ', '+', $img);
 	$data = base64_decode($img);
 	$file = UPLOAD_DIR . uniqid() . '.png';
 	$success = file_put_contents($file, $data);
-	// print $success ? $file : 'Unable to save the file.';
 
-  $sourceImage = './savedImages/Goku2.png';
+  $sourceImage = './user_pictures/lunettes_mid.png';
 
-  //set the destination image (background)
   $destImage = $file;
 
   //get the size of the source image, needed for imagecopy()
@@ -23,8 +21,8 @@
   $dest = imagecreatefrompng($destImage);
 
   //set the x and y positions of the source image on top of the destination image
-  $src_xPosition = 75; //75 pixels from the left
-  $src_yPosition = 50; //50 pixels from the top
+  $src_xPosition = 250 - 82; //75 pixels from the left
+  $src_yPosition = 94.5 - 82; //50 pixels from the top
 
   //set the x and y positions of the source image to be copied to the destination image
   $src_cropXposition = 0; //do not crop at the side
