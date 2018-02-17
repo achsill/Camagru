@@ -1,45 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" type="text/css" href="font.css">
     <meta charset="utf-8">
-    <script type="text/javascript" src="login.js">
-    </script>
+
     <title></title>
   </head>
   <body>
-    <!-- Subscription Form -->
-    <div class="wrapper">
-      <div class="backgroundImage">
-
-      </div>
-      <div class="signContainer">
-        <div id="signUpForm" class="signForms">
-          <h2>SIGN UP</h2>
-          <form method="post">
-            <input id="email" name="email" class="email" type="text" placeholder="Mail address">
-            <input id="username" name="username" class="username" type="text" placeholder="Username">
-            <input id="password" name="password" class="password" type="password" placeholder="Password">
-            <input id="confirmPassword" name="confirmPassword" class="password" type="password" placeholder="Confirm the Password">
-            <p id="errorSignupMsg" class="errorMessage">Error</p>
-            <button onClick="SignUpForm()" class="submitButton" type="button" class="btn_email">SEND</button>
-            <p onClick="ToggleCard()" class="swapCard">Already have an account? <span>Sign in</span></p>
-          </form>
-        </div>
-        <div id="signInForm" class="signForms">
-          <h2>SIGN IN</h2>
-          <form method="post">
-            <input id="LoginEmail" name="email" class="email" type="text" placeholder="Mail address or username">
-            <input id="Loginpassword" name="password" class="password" type="password" placeholder="Password">
-            <p id="errorSignupMsg" class="errorMessage">Error</p>
-            <button onClick="SignInForm()" class="submitButton" type="button" class="btn_email">SEND</button>
-            <p onClick="ToggleCard()" class="swapCard">Don't have an account? <span>Sign up</span></p>
-          </form>
-        </div>
-      </div>
+    <div class="steak">
+      <video id="video" width="460" height="350" autoplay></video>
     </div>
-
-    <!-- End Subscription Form -->
+    <button id="snap">Snap Photo</button>
+    <canvas id="canvas" width="460" height="350"></canvas>
+    <img id="matof" src="" alt="">
+    <script type="text/javascript" src="takepicture.js">
+    </script>
   </body>
 </html>

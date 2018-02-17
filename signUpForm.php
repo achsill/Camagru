@@ -13,11 +13,32 @@ class User {
     if ($securityErr != "OK")
       return $securityErr;
 	  $hash_password = password_hash($password, PASSWORD_BCRYPT);
-	  $req = $this->db->prepare('INSERT INTO account (username, password, email) VALUES (:username, :password, :email)');
+		$accountKey = password_hash(microtime(TRUE)*100000 / rand(0, 100), PASSWORD_BCRYPT);
+	  $req = $this->db->prepare('INSERT INTO account (username, password, email, accountKey) VALUES (:username, :password, :email, :accountKey)');
 	  $req->bindParam(':username', $username);
 	  $req->bindParam(':password', $hash_password);
-	  $req->bindParam(':email', $email);
+		$req->bindParam(':email', $email);
+	  $req->bindParam(':accountKey', $accountKey);
 	  $req->execute();
+
+
+		// Send mail
+		$destinataire = $email;
+		$sujet = "Activer votre compte" ;
+		$entete = "From: activation@camagru.com" ;
+
+		// Le lien d'activation est composé du login(log) et de la clé(cle)
+		$message = 'Hi,
+
+		Activate your account you foool.
+
+		http://localhost:8080/validation.php?log='.urlencode($username).'&cle='.urlencode($accountKey).'
+
+
+		---------------
+		Ceci est un mail automatique, Merci de ne pas y répondre.';
+		mail($destinataire, $sujet, $message, $entete) ;
+
   }
 
 
@@ -78,7 +99,7 @@ class User {
 
 
 // TO CHANGE
-$servername = "mysql:dbname=camagru;host=localhost:3306";
+$servername = "mysql:dbname=camagru;host=localhost:3307";
 $username = "root";
 $password = "root";
 
