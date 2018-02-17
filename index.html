@@ -14,9 +14,8 @@
       <div class="backgroundImage">
 
       </div>
-      <div class="signUpContainer">
-        <div class="signUpForm">
-
+      <div class="signContainer">
+        <div id="signUpForm" class="signForms">
           <h2>SIGN UP</h2>
           <form method="post">
             <input id="email" name="email" class="email" type="text" placeholder="Mail address">
@@ -24,7 +23,18 @@
             <input id="password" name="password" class="password" type="password" placeholder="Password">
             <input id="confirmPassword" name="confirmPassword" class="password" type="password" placeholder="Confirm the Password">
             <p id="errorSignupMsg" class="errorMessage">Error</p>
-            <button onClick="gestionClic()" class="submitButton" type="button" class="btn_email">SEND</button>
+            <button onClick="SignUpForm()" class="submitButton" type="button" class="btn_email">SEND</button>
+            <p onClick="ToggleCard()" class="swapCard">Already have an account? <span>Sign in</span></p>
+          </form>
+        </div>
+        <div id="signInForm" class="signForms">
+          <h2>SIGN IN</h2>
+          <form method="post">
+            <input id="LoginEmail" name="email" class="email" type="text" placeholder="Mail address or username">
+            <input id="Loginpassword" name="password" class="password" type="password" placeholder="Password">
+            <p id="errorSignupMsg" class="errorMessage">Error</p>
+            <button onClick="SignInForm()" class="submitButton" type="button" class="btn_email">SEND</button>
+            <p onClick="ToggleCard()" class="swapCard">Don't have an account? <span>Sign up</span></p>
           </form>
         </div>
       </div>

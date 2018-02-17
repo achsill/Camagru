@@ -25,7 +25,7 @@ body {
   background-image: url(img/background-signup.jpg);
 }
 
-.signUpContainer {
+.signContainer {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@ body {
 
 }
 
-.signUpContainer h2{
+.signContainer h2{
   font-family: Roboto-Regular;
   text-align: center;
 
@@ -52,7 +52,7 @@ input[type=text],  input[type=submit], input[type=password]{
     margin-right: auto;
 }
 
-.signUpForm {
+.signForms {
   width: 50%;
   margin-left: auto;
   margin-right: auto;
@@ -95,4 +95,23 @@ input[type=text],  input[type=submit], input[type=password]{
   color: red;
   font-family: OpenSans-Regular;
   text-align: center;
+}
+
+.swapCard {
+  text-align: center;
+  font-family: OpenSans-Regular;
+  font-size: 13px;
+}
+
+.swapCard span {
+  color: #2ba7c4;
+  cursor: pointer;
+}
+
+.swapCard span:hover{
+  text-decoration: underline;
+}
+
+#signInForm {
+  display: none;
 }
