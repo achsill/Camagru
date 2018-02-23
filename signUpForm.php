@@ -10,7 +10,7 @@ class User {
 
   function CreateUser($username, $password, $confirmPassword, $email) {
     $securityErr = $this->SecurityInputChecks($username, $password, $confirmPassword, $email);
-    if ($securityErr != "OK")
+    if ($securityErr != "Your account has been created, check your email.")
       return $securityErr;
 	  $hash_password = password_hash($password, PASSWORD_BCRYPT);
 		$accountKey = password_hash(microtime(TRUE)*100000 / rand(0, 100), PASSWORD_BCRYPT);
@@ -38,7 +38,7 @@ class User {
 		---------------
 		Ceci est un mail automatique, Merci de ne pas y répondre.';
 		mail($destinataire, $sujet, $message, $entete) ;
-
+		return $securityErr;
   }
 
 
@@ -92,7 +92,7 @@ class User {
 
 	  if (strlen($password) < 5)
 		  return "The password need to have at least 5 caracters";
-	  return "OK";
+	  return "Your account has been created, check your email.";
    }
 }
 
@@ -101,7 +101,7 @@ class User {
 // TO CHANGE
 $servername = "mysql:dbname=camagru;host=localhost:3307";
 $username = "root";
-$password = "root";
+$password = "rootroot";
 
 try {
 	$db = new PDO($servername, $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));

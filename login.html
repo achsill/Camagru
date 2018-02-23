@@ -22,7 +22,8 @@
             <input id="username" name="username" class="username" type="text" placeholder="Username">
             <input id="password" name="password" class="password" type="password" placeholder="Password">
             <input id="confirmPassword" name="confirmPassword" class="password" type="password" placeholder="Confirm the Password">
-            <p id="errorSignupMsg" class="errorMessage">Error</p>
+            <p id="errorSignupMsg" class="formMsg">Error</p>
+            <p id="okSignupMsg" class="formMsg">Ok</p>
             <button onClick="SignUpForm()" class="submitButton" type="button" class="btn_email">SEND</button>
             <p onClick="ToggleCard()" class="swapCard">Already have an account? <span>Sign in</span></p>
           </form>
@@ -31,8 +32,9 @@
           <h2>SIGN IN</h2>
           <form method="post">
             <input id="LoginEmail" name="email" class="email" type="text" placeholder="Mail address or username">
-            <input id="Loginpassword" name="password" class="password" type="password" placeholder="Password">
-            <p id="errorSignupMsg" class="errorMessage">Error</p>
+            <input id="LoginPassword" name="password" class="password" type="password" placeholder="Password">
+            <p id="errorSignupMsg2" class="formMsg">Error</p>
+            <p id="okSignupMsg2" class="formMsg">Ok</p>
             <button onClick="SignInForm()" class="submitButton" type="button" class="btn_email">SEND</button>
             <p onClick="ToggleCard()" class="swapCard">Don't have an account? <span>Sign up</span></p>
           </form>

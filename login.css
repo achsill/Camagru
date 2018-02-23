@@ -89,10 +89,9 @@ input[type=text],  input[type=submit], input[type=password]{
   cursor: pointer;
 }
 
-.errorMessage {
+.formMsg {
   display: none;
   font-size: 12px;
-  color: red;
   font-family: OpenSans-Regular;
   text-align: center;
 }
@@ -114,4 +113,12 @@ input[type=text],  input[type=submit], input[type=password]{
 
 #signInForm {
   display: none;
+}
+
+#errorSignupMsg, #errorSignupMsg2{
+  color: red;
+}
+
+#okSignupMsg, #okSignupMsg2{
+  color: green;
 }

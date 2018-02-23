@@ -1,28 +1,29 @@
 
 <?php
-include "config.php";
-echo "ferme la";
-$password_hash = password_hash($_POST['password'], PASSWORD_BCRYPT);
-echo "ferme la2";
+// include "init.php";
+$servername = "mysql:dbname=camagru;host=localhost:3307";
+$username = "root";
+$password = "rootroot";
 
-$req = $db->prepare('SELECT id FROM account WHERE username = :username AND password = :password');
-echo "ferme la3";
-$req->execute(array(
-    'pseudo' => $_POST['username'],
-    'pass' => $password_hash));
-
-echo "ferme la4";
-
-
-echo "<p>tg</p>";
-if (!$resultat)
-{
-    echo '<p>Mauvais identifiant ou mot de passe !</p>';
-}
-else
-{
-    echo 'A la bien zincou';
+try {
+	$db = new PDO($servername, $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+} catch (PDOException $e) {
+	echo 'Connexion échouée : ' . $e->getMessage();
 }
 
-$db->close();
+$req = $db->prepare('SELECT id, password FROM account WHERE username = :username');
+$req->bindParam(':username', $_POST['email']);
+$req->execute();
+$result = $req->fetch();
+
+
+$isValid = password_verify($_POST['password'], $result['password']);
+if ($isValid) {
+	$_SESSION['id'] = $resultat['id'];
+ 	$_SESSION['pseudo'] = $pseudo;
+	echo "1";
+}
+else {
+	echo "wrong password";
+}
 ?>

@@ -34,26 +34,53 @@ function handleAJAXReturn()
     {
         if (http.status == 200)
         {
-          console.log(http.responseText);
-          document.getElementById("errorSignupMsg").innerHTML = http.responseText;
-          document.getElementById("errorSignupMsg").style.display = 'block';
+          if (http.responseText == "Your account has been created, check your email.") {
+            document.getElementById("errorSignupMsg").style.display = 'none';
+            document.getElementById("okSignupMsg").innerHTML = http.responseText;
+            document.getElementById("okSignupMsg").style.display = 'block';
+          }
+          else {
+            document.getElementById("okSignupMsg").style.display = 'none';
+            document.getElementById("errorSignupMsg").innerHTML = http.responseText;
+            document.getElementById("errorSignupMsg").style.display = 'block';
+          }
         }
         else
         {
-            alert('Pas glop pas glop');
+            alert('Error');
         }
     }
 }
 
+function signInReturn() {
+  if (http.readyState == 4)
+  {
+      if (http.status == 200)
+      {
+        var result = http.responseText
+        if (parseInt(result) == 1) {
+          window.location.href = "index.html";
+        }
+        else {
+          document.getElementById("okSignupMsg2").style.display = 'none';
+          document.getElementById("errorSignupMsg2").innerHTML = "Error while trying to log";
+          document.getElementById("errorSignupMsg2").style.display = 'block';
+        }
+      }
+      else {
+        alert("Error");
+      }
+    }
+}
 
-function SigninForm()
+function SignInForm()
 {
     http = createRequestObject();
-    var post = "email=" + document.getElementById('loginEmail').value
-    post = post + "&password=" + document.getElementById('loginPassword').value
+    var post = "email=" + document.getElementById('LoginEmail').value;
+    post = post + "&password=" + document.getElementById('LoginPassword').value;
 
-    http.onreadystatechange = handleAJAXReturn;
-    http.open("POST", "./signUpForm.php", true);
+    http.onreadystatechange = signInReturn;
+    http.open("POST", "./login.php", true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.send(post);
 }
