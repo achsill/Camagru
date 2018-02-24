@@ -91,15 +91,19 @@ var video = document.getElementById('video');
 if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     // Not adding `{ audio: true }` since we only want video now
     navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+      if (video) {
         video.src = window.URL.createObjectURL(stream);
         video.play();
+      }
     });
 }
 
 // Elements for taking the snapshot
 var canvas = document.getElementById('canvas');
 var goku = document.getElementById('goku');
-var context = canvas.getContext('2d');
+if (canvas) {
+  var context = canvas.getContext('2d');
+}
 
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", function() {

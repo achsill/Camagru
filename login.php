@@ -1,6 +1,5 @@
 
 <?php
-// include "init.php";
 $servername = "mysql:dbname=camagru;host=localhost:3307";
 $username = "root";
 $password = "rootroot";
@@ -19,8 +18,9 @@ $result = $req->fetch();
 
 $isValid = password_verify($_POST['password'], $result['password']);
 if ($isValid) {
-	$_SESSION['id'] = $resultat['id'];
- 	$_SESSION['pseudo'] = $pseudo;
+	session_start();
+	$_SESSION['id'] = $result['id'];
+ 	$_SESSION['pseudo'] = $_POST['email'];
 	echo "1";
 }
 else {
