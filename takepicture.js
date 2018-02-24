@@ -52,10 +52,12 @@ function selectPicture(id) {
   var img = document.getElementById(id);
   document.getElementById('imageShowed').src = img.src
   document.getElementById('imageShowed').style.display = 'block';
+  document.getElementById('close').style.display = 'block';
 }
 
 function closeImage() {
   document.getElementById('imageShowed').style.display = 'none';
+  document.getElementById('close').style.display = 'none';
 }
 
 function prevCarousel() {

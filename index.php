@@ -1,8 +1,10 @@
 <?php session_start();
-    if ($_SESSION['id'] == '' || $_SESSION['pseudo'] == '') {
-      echo '-1';
-    }
-    else {
-       echo json_encode(array('id' => $_SESSION['id'], 'username' => $_SESSION['pseudo']));
-    }
+  $dir    = 'user_pictures';
+  $files = scandir($dir);
+  if ($_SESSION['id'] == '' || $_SESSION['pseudo'] == '') {
+    echo json_encode(array('connected' => "-1", 'files' => $files));
+  }
+  else {
+     echo json_encode(array('connected' => '1', 'id' => $_SESSION['id'], 'username' => $_SESSION['pseudo'], 'files' => json_encode($files)));
+  }
 ?>

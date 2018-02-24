@@ -11,16 +11,31 @@
   <body>
     <div class="container">
       <div class="profilDiv">
-
+        <img id="profilPicture" src="img/default_pp.png" alt="">
+        <p>Username</p>
+        <button onclick="displayTakePicture()" type="button" name="button">
+          <img id="buttonCamera" src="img/camera.png" alt="" onclick="displayTakePicture()">
+        </button>
       </div>
-      <div class="picturesDiv">
-
+      <div id="containPost" class="picturesDiv">
+        <div class="userPost">
+          <img src="user_pictures/5a8ecf1da1e88.png" alt="">
+          <div class="interact">
+            <div class="containLikeBtn">
+              <img class="likeBtn" src="img/like.png" alt="">
+            </div>
+            <div class="containComment">
+              <p>Show the comments</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="mostLikedPicDiv">
 
       </div>
     </div>
-    <!-- <div id="takePictureModal">
+    <div id="takePictureModal">
+      <img onclick="closeTakePicture()" id="closeModal" src="img/close.png">
       <img onclick="closeImage()" id="close" src="img/close.png">
       <img id="imageShowed" src="">
       <div class="videoContainer">
@@ -36,7 +51,7 @@
       <img src="img/next_arrow.png" onclick=nextCarousel() id="nextCarousel">
         <button id="snap">Snap Photo</button>
     </div>
-    <canvas id="canvas" width="500" height="375"></canvas> -->
+    <canvas id="canvas" width="500" height="375"></canvas>
     <script type="text/javascript" src="takepicture.js">
     </script>
   </body>

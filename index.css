@@ -1,6 +1,6 @@
 body {
   margin: 0px;
-  background-color: #f7f7f7;
+  background-color: #f9f9fa;
 }
 
 #canvas {
@@ -68,6 +68,7 @@ body {
   flex-direction: column;  /* make main axis vertical */
   justify-content: center; /* center items vertically, in this case */
   align-items: center;
+  display: none;
 }
 
 .finalPicture {
@@ -119,11 +120,12 @@ body {
 
 #close {
   z-index: 120;
-  height: 32px;
-  width: 32px;
+  height: 20px;
+  width: 20px;
   top: 8%;
   position: absolute;
-  right: 16%;
+  right: 18%;
+  display: none;
 }
 
 .container {
@@ -132,6 +134,7 @@ body {
   width: 80vw;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 70px;
 }
 
 .profilDiv {
@@ -145,4 +148,87 @@ body {
 
 .mostLikedPicDiv {
   flex: 1;
+}
+
+.userPost {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 500px;
+  -moz-box-shadow: 1px 1px 12px 1px #bdbdbd;
+  -webkit-box-shadow: 1px 1px 12px 1px #bdbdbd;
+  -o-box-shadow: 1px 1px 12px 1px #bdbdbd;
+  box-shadow: 1px 1px 12px 1px #bdbdbd;
+  filter:progid:DXImageTransform.Microsoft.Shadow(color=#bdbdbd, Direction=134, Strength=12);
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  margin-top: 15px;
+}
+
+.interact {
+  height: 30px;
+  background-color: #fff;
+  margin-top: -4px;
+  display: flex;
+}
+
+.likeBtn {
+  width: 24px;
+  margin-left: 5px;
+  margin-top: 2.5px;
+  cursor: pointer;
+}
+
+.containLikeBtn {
+  flex: 1;
+}
+
+.containComment {
+  flex: 3;
+}
+
+.containComment p {
+  margin: 0;
+  margin-top: 8px;
+  text-align: right;
+  margin-right: 48px;
+}
+
+#closeModal {
+  width: 20px;
+  z-index: 9;
+  top: -20px;
+  position: absolute;
+  right: -20px;
+}
+
+#profilPicture {
+  height: 128px;
+  width: 128px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#buttonCamera {
+  width: 24px;
+}
+
+.profilDiv p {
+  text-align: center;
+}
+
+.profilDiv button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 48px;
+  background-color: #2ba7c4;
+  border: none;
+  margin-top: 8px;
+  color: white;
+  font-family: OpenSans-Regular;
+  cursor: pointer;
 }
