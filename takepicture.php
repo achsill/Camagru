@@ -1,5 +1,10 @@
 <?php
   define('UPLOAD_DIR', 'user_pictures/');
+  session_start();
+  if ($_SESSION['pseudo'] == '') {
+    echo "-1";
+    return 1;
+  }
 	$img = $_POST['image'];
 	$img = str_replace('data:image/png;base64,', '', $img);
 	$img = str_replace(' ', '+', $img);

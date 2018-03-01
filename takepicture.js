@@ -36,10 +36,13 @@ function handleAJAXReturn()
     {
         if (http.status == 200)
         {
-          listOfPictures.push('<img id="' + listOfPictures.length + '" class="finalPicture" src="' + http.responseText + '" alt="" onclick=selectPicture(' + listOfPictures.length + ')>');
-          numberOfPictures = listOfPictures.length - 1;
-          limitPicture = numberOfPictures - 5;
-          refreshCarousel(numberOfPictures, limitPicture);
+          if (parseInt(http.responseText) != -1) {
+
+            listOfPictures.push('<img id="' + listOfPictures.length + '" class="finalPicture" src="' + http.responseText + '" alt="" onclick=selectPicture(' + listOfPictures.length + ')>');
+            numberOfPictures = listOfPictures.length - 1;
+            limitPicture = numberOfPictures - 5;
+            refreshCarousel(numberOfPictures, limitPicture);
+          }
         }
         else
         {
@@ -80,7 +83,7 @@ function refreshCarousel(i, max) {
     showedPictures = showedPictures + listOfPictures[i];
     i--;
   }
-  var x =document.getElementById("carousel").innerHTML;
+  var x = document.getElementById("carousel").innerHTML;
   document.getElementById('carousel').innerHTML =  showedPictures;
 }
 
@@ -114,3 +117,26 @@ document.getElementById("snap").addEventListener("click", function() {
   image.src = canvas.toDataURL("image/png");
   sendPicture(image.src);
 });
+
+
+function disconnectReturn() {
+  if (http.readyState == 4)
+  {
+      if (http.status == 200) {
+        console.log(http.responseText);
+        console.log("parle mieux");
+        listOfPictures = [];
+      }
+      else {
+        console.log("parle mieux2");
+      }
+    }
+}
+
+
+function disconnectUser() {
+  http.onreadystatechange = disconnectReturn;
+  http.open("POST", "./disconnect.php", true);
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http.send(post);
+}

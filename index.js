@@ -47,9 +47,12 @@ function isUserLogged() {
             username = result.username;
             id = result.id;
         }
-        for (var file in result.files) {
-          if (result.files[file] != '.' && result.files[file] != '..')
-            usersPics.push(result.files[file]);
+        tableauF = JSON.parse(result.files);
+        for (var file in tableauF) {
+          fileF = tableauF[file];
+          if (fileF != '.' && fileF != '..') {
+            usersPics.push(fileF);
+          }
         }
         printPictures();
       }
