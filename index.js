@@ -42,10 +42,12 @@ function isUserLogged() {
   {
       if (http.status == 200) {
         result = JSON.parse(http.responseText);
-        if (http.responseText != '-1') {
+        if (result.connected != '-1') {
             userLogged = 1;
             username = result.username;
             id = result.id;
+            document.getElementById("disconnectButton").style.display = "block";
+            document.getElementById("subscribeButton").style.display = "none";
         }
         tableauF = JSON.parse(result.files);
         for (var file in tableauF) {

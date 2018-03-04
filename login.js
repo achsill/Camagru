@@ -60,6 +60,7 @@ function signInReturn() {
         var result = http.responseText
         if (parseInt(result) == 1) {
           window.location.href = "index.html";
+          document.getElementById("disconnectButton").style.display = "block";
         }
         else {
           document.getElementById("okSignupMsg2").style.display = 'none';

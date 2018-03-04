@@ -3,12 +3,22 @@
   <head>
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" type="text/css" href="font.css">
+    <link href="https://fonts.googleapis.com/css?family=Abel|Cormorant" rel="stylesheet">
     <meta charset="utf-8">
     <script type="text/javascript" src="index.js">
     </script>
     <title></title>
   </head>
   <body>
+    <div class="header">
+      <div class="titleHeader">
+        Camagru
+      </div>
+      <div class="loginHeader">
+        <button id="disconnectButton" onclick="disconnectUser()"type="button" name="button">disconnect</button>
+        <button id="subscribeButton" onclick="location.href = 'login.html'; "type="button" name="button">Login</button>
+      </div>
+    </div>
     <div class="container">
       <div class="profilDiv">
         <img id="profilPicture" src="img/default_pp.png" alt="">
@@ -34,6 +44,8 @@
 
       </div>
     </div>
+
+
     <div id="takePictureModal">
       <img onclick="closeTakePicture()" id="closeModal" src="img/close.png">
       <img onclick="closeImage()" id="close" src="img/close.png">
@@ -51,7 +63,6 @@
       <img src="img/next_arrow.png" onclick=nextCarousel() id="nextCarousel">
         <button id="snap">Snap Photo</button>
     </div>
-    <button onclick="disconnectUser()"type="button" name="button">disconnect</button>
     <canvas id="canvas" width="500" height="375"></canvas>
     <script type="text/javascript" src="takepicture.js">
     </script>

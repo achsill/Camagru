@@ -123,12 +123,9 @@ function disconnectReturn() {
   if (http.readyState == 4)
   {
       if (http.status == 200) {
-        console.log(http.responseText);
-        console.log("parle mieux");
         listOfPictures = [];
-      }
-      else {
-        console.log("parle mieux2");
+        document.getElementById("disconnectButton").style.display = "none";
+        document.getElementById("subscribeButton").style.display = "block";
       }
     }
 }
