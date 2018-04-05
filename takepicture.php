@@ -42,11 +42,21 @@
    * it represents the quality of the image to be created,
    * if not set, the default is about '75'
    */
+
   imagejpeg($dest, $file,100);
+  $servername = "mysql:dbname=camagru;host=localhost:3307";
+  $username = "root";
+  $password = "rootroot";
+
+  try {
+    $dbh = new PDO($servername, $username, $password);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  } catch (PDOException $e) {
+    echo 'Failed';
+  }
+
+  $req = $dbh->prepare('INSERT INTO picture (nbrOfLike, nbrOfComments, name) VALUES ("0", "0", :filename)');
+  $req->bindParam(':filename', $file);
+  $req->execute();
   print $file;
-  // //destroy the source image
-  // imagedestroy($src);
-  //
-  // //destroy the destination image
-  // imagedestroy($dest);
 ?>

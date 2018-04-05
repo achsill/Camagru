@@ -157,6 +157,7 @@ body {
   max-width: 500px;
   border: 1px solid #e6e6e6;
   margin-top: 15px;
+  background-color: white;
 }
 
 .interact {
@@ -258,4 +259,43 @@ body {
   font-family: 'Abel', sans-serif;
   line-height: 65px;
 
+}
+
+.commentText {
+  resize: none;
+    width: 80%;
+    margin: auto;
+    border: 0;
+    display: inline-block;
+    padding: 0;
+    border-bottom: 1px solid #282828;
+    height: 15px;
+}
+
+.iconSend {
+  width: 15px;
+  height: 15px;
+  line-height: 30px;
+  margin-bottom: 7.5px;
+  cursor: pointer;
+}
+
+.commentContain {
+  resize: none;
+  width: 80%;
+  margin: auto;
+  display: block;
+  border: 0;
+}
+
+.nbrLikes {
+  display: inline-block;
+}
+
+.commentsList {
+  font-family: 'Open Sans', sans-serif;
+  margin-left: 25px;
+  margin-right: 25px;
+  font-size: 13px;
+  line-height: 15px;
 }
