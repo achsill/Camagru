@@ -1,6 +1,4 @@
 <?php
-  echo $_POST['commentText'], $_POST['id'];
-
   $servername = "mysql:dbname=camagru;host=localhost:3307";
   $username = "root";
   $password = "rootroot";
@@ -11,9 +9,15 @@
   } catch (PDOException $e) {
     echo 'Failed';
   }
-  $req = $dbh->prepare('INSERT INTO comment (comment, pictureID, userID) VALUES (:commentText, :idPicture, :userId)');
+
+  $req = $dbh->prepare('SELECT username FROM account WHERE id = :id');
+  $req->bindParam(':id', $_POST['userId']);
+  $req->execute();
+  $user = $req->fetch();
+
+  $req = $dbh->prepare('INSERT INTO comment (comment, pictureID, userName) VALUES (:commentText, :idPicture, :userName)');
   $req->bindParam(':commentText', $_POST['commentText']);
   $req->bindParam(':idPicture', $_POST['pictureId']);
-  $req->bindParam(':userId', $_POST['userId']);
+  $req->bindParam(':userName', $user['username']);
   $req->execute();
 ?>

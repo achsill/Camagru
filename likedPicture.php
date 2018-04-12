@@ -4,18 +4,32 @@ $username = "root";
 $password = "rootroot";
 
 try {
-	$db = new PDO($servername, $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+	$dbh = new PDO($servername, $username, $password);
+	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-	echo 'Connexion échouée : ' . $e->getMessage();
+	echo 'Failed';
 }
 
-$usernameExist = $db->prepare("SELECT nbrOfLike FROM picture WHERE id = :id");
-$usernameExist->bindParam('id', htmlspecialchars($_POST['id']));
-$usernameExist->execute();
-$newNbrOfLike = intval($usernameExist->fetch(PDO::FETCH_ASSOC)["nbrOfLike"]) + 1;
 
-$usernameExist = $db->prepare("UPDATE picture SET nbrOfLike = :nbrOfLike WHERE id = :id");
-$usernameExist->bindParam('id', htmlspecialchars($_POST['id']));
-$usernameExist->bindParam('nbrOfLike', $newNbrOfLike);
-$usernameExist->execute();
+$req = $dbh->prepare("SELECT * FROM likes WHERE pictureID = :pictureID AND userID = :userID");
+$req->bindParam(':pictureID', $_POST['pictureID']);
+$req->bindParam(':userID', $_POST['userID']);
+$req->execute();
+
+$like = $req->fetch();
+if (is_null($like["pictureID"]) && is_null($like["userID"])) {
+	$req = $dbh->prepare("INSERT INTO likes (pictureID, userID) VALUES (:pictureID, :userID)");
+	$req->bindParam(':pictureID', $_POST['pictureID']);
+	$req->bindParam(':userID', $_POST['userID']);
+	$req->execute();
+	$req = null;
+}
+else {
+	$req = $dbh->prepare("DELETE FROM likes WHERE id = :id");
+	$req->bindParam(':id', $like['id']);
+	$req->execute();
+	$req = null;
+}
+
+echo json_encode($likes);
 ?>

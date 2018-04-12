@@ -299,3 +299,33 @@ body {
   font-size: 13px;
   line-height: 15px;
 }
+
+.username {
+  font-weight: 700;
+}
+
+.showMoreComments {
+  text-align: center;
+  border-top: 1px solid #eaeaea;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+
+.showMoreComments:hover {
+  text-align: center;
+  border-top: 1px solid #eaeaea;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  background-color: #2ba7c4;
+  color: white;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}

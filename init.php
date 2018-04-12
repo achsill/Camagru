@@ -25,7 +25,7 @@ $dbh->exec("CREATE TABLE IF NOT EXISTS account(
 $dbh->exec("CREATE TABLE IF NOT EXISTS comment(
   id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   pictureID INT(11) UNSIGNED NOT NULL,
-  userID INT(11) UNSIGNED NOT NULL,
+  userName VARCHAR(255) NOT NULL,
   comment VARCHAR(255) NOT NULL
   );
   ");
@@ -34,6 +34,12 @@ $dbh->exec("CREATE TABLE IF NOT EXISTS picture(
   nbrOfLike INT(11) UNSIGNED NOT NULL,
   nbrOfComments INT(11) UNSIGNED NOT NULL,
   name varchar(255) NOT NULL
+  );
+  ");
+$dbh->exec("CREATE TABLE IF NOT EXISTS likes(
+  id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  pictureID INT(11) UNSIGNED NOT NULL,
+  userID INT(11) UNSIGNED NOT NULL
   );
   ");
 ?>
