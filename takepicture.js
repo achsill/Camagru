@@ -130,10 +130,30 @@ function disconnectReturn() {
     }
 }
 
-
 function disconnectUser() {
   http.onreadystatechange = disconnectReturn;
   http.open("POST", "./disconnect.php", true);
   http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   http.send(post);
 }
+
+
+function readURL(){
+    var file = document.getElementById("getval").files[0];
+    var reader = new FileReader();
+    reader.onloadend = function(){
+      console.log(reader.result);
+       // document.getElementById('imageShowed').src = reader.result;
+       // document.getElementById('imageShowed').style.display = 'block';
+       // document.getElementById('close').style.display = 'block';
+       sendPicture(reader.result);
+   }
+    if (file){
+      reader.readAsDataURL(file);
+
+    }
+    else {
+  }
+}
+
+document.getElementById('getval').addEventListener('change', readURL, true);

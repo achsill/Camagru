@@ -160,6 +160,11 @@ body {
   background-color: white;
 }
 
+.userPost img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
 .interact {
   height: 30px;
   background-color: #fff;
@@ -229,7 +234,21 @@ body {
 
 #disconnectButton {
   display: none;
+  height: 24px;
+  width: 24px;
   margin: auto;
+  margin-top: calc(65px/ 2 - 12px);
+  cursor: pointer;
+}
+
+#disconnectButton:hover{
+  display: none;
+  height: 24px;
+  width: 24px;
+  margin: auto;
+  margin-top: calc(65px/ 2 - 12px);
+  cursor: pointer;
+  transform: rotate(20deg);
 }
 
 #subscribeButton {
@@ -332,4 +351,10 @@ body {
 
 #username {
   font-family: 'Open Sans', sans-serif;
+}
+
+#getval {
+  bottom: 215px;
+  right: 90px;
+  position: absolute;
 }

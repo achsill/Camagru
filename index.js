@@ -140,12 +140,6 @@ function getComments(i, limit) {
 }
 
 function showMoreContent(pictureId, id) {
-  // k = 0;
-  // com = "";
-  // while (usersPics[id].com[k]) {
-  //   com = "<p><span class='username'>" + usersPics[id].com[k]["userName"] + ": </span>" + usersPics[id].com[k]["comment"] + "</p>" + com;
-  //   k++;
-  // }
   var content = document.getElementById("toggleComments" + pictureId).innerHTML;
   console.log(content);
   if (content.includes("Afficher")) {
@@ -159,8 +153,4 @@ function showMoreContent(pictureId, id) {
     document.getElementById("comments_" + pictureId).innerHTML = com;
     document.getElementById("toggleComments" + pictureId).innerHTML = 'Afficher tous les commentaires (' + (usersPics[id].com.length - 5) + ')';
   }
-
-
-
-
 }

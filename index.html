@@ -16,7 +16,8 @@
         Camagru
       </div>
       <div class="loginHeader">
-        <button id="disconnectButton" onclick="disconnectUser()"type="button" name="button">disconnect</button>
+        <img id="disconnectButton" onclick="disconnectUser()" src="img/disconnect.png" alt="">
+        <!-- <button type="button" name="button">disconnect</button> -->
         <button id="subscribeButton" onclick="location.href = 'login.html'; "type="button" name="button">Login</button>
       </div>
     </div>
@@ -57,6 +58,9 @@
           <img src="filters_images/lunettes.png" alt="">
         </div>
       </div>
+
+      <input type='file' id='getval' />
+
       <img src="img/prev_arrow.png" onclick=prevCarousel(this.src) id="prevCarousel">
         <div id="carousel">
           <img id="finalPicture" src="" alt="">
