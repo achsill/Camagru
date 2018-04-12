@@ -329,3 +329,7 @@ body {
   margin-bottom: 0px;
   cursor: pointer;
 }
+
+#username {
+  font-family: 'Open Sans', sans-serif;
+}

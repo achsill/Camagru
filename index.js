@@ -58,13 +58,12 @@ function isUserLogged() {
         if (result.connected != '-1') {
             userLogged = 1;
             username = result.username;
-            console.log(result.id);
             userId = result.id;
             document.getElementById("disconnectButton").style.display = "block";
             document.getElementById("subscribeButton").style.display = "none";
+            document.getElementById("username").innerHTML = username;
         }
         usersPics = JSON.parse(result.files);
-        console.log(usersPics);
         printPictures();
       }
     }
