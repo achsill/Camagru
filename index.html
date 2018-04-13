@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
     <link rel="stylesheet" type="text/css" href="font.css">
     <link href="https://fonts.googleapis.com/css?family=Abel|Cormorant" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
@@ -25,6 +26,9 @@
       <div class="profilDiv">
         <img id="profilPicture" src="img/default_pp.png" alt="">
         <p id="username">Username</p>
+        <button id="editAccount" onclick="displayEditAccount()" type="button" name="button">
+          <img id="parameters" src="img/parameters.png" alt="">
+        </button>
         <button id="takePhotoBtn" onclick="displayTakePicture()" type="button" name="button">
           <img id="buttonCamera" src="img/camera.png" alt="" onclick="displayTakePicture()">
         </button>
@@ -46,6 +50,19 @@
 
       </div>
     </div>
+
+      <div id="editAccountModal" class="signForms">
+          <h2>Edit Account</h2>
+          <form method="post">
+            <input id="email" name="email" class="email" type="text" placeholder="Mail address">
+            <input id="accountUsername" name="username" class="username" type="text" placeholder="Username">
+            <input id="oldPassword" name="oldPassword" class="password" type="password" placeholder="Old Password">
+            <input id="newPassword" name="newPassword" class="password" type="password" placeholder="New Password">
+            <p id="errorSignupMsg" class="formMsg">Error</p>
+            <p id="okSignupMsg" class="formMsg">Ok</p>
+            <button onclick="editAccount()" class="submitButton" type="button">SEND</button>
+          </form>
+        </div>
 
 
     <div id="takePictureModal">

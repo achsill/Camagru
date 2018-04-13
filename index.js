@@ -58,6 +58,7 @@ function isUserLogged() {
         result = JSON.parse(http.responseText);
         if (result.connected != '-1') {
             userLogged = 1;
+            console.log(result.username);
             username = result.username;
             userId = result.id;
             document.getElementById("disconnectButton").style.display = "block";
@@ -145,7 +146,6 @@ function getComments(i, limit) {
 
 function showMoreContent(pictureId, id) {
   var content = document.getElementById("toggleComments" + pictureId).innerHTML;
-  console.log(content);
   if (content.includes("Afficher")) {
     com = getComments(id, usersPics[id].com.length + 1);
     document.getElementById("comments_" + pictureId).innerHTML = com;
@@ -165,4 +165,51 @@ function selectFilter(filterName) {
   filter_selected = filterName.id;
   filterName.style.boxShadow = "1px 1px 2px 0px #656565";
   document.getElementById("filterSelected").src = "filters_images/" + filterName.id.split("_")[0] + ".png";
+}
+
+function getUserInfo() {
+  if (http.readyState == 4) {
+    if (http.status == 200) {
+      result = JSON.parse(http.responseText);
+      document.getElementById("email").value = result.email;
+      document.getElementById("accountUsername").value = result.username;
+    }
+  }
+}
+
+function displayEditAccount() {
+  document.getElementById("editAccountModal").style.display = "block";
+  var post = "username=" + username;
+  http.onreadystatechange = getUserInfo;
+  http.open("POST", "./getUserInfo.php", true);
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http.send(post);
+}
+
+function userModified() {
+  if (http.readyState == 4) {
+    if (http.status == 200) {
+      username = http.responseText;
+      console.log(username);
+      getInfo();
+    }
+  }
+}
+
+function editAccount() {
+  // document.getElementById("editAccountModal").style.display = "block";
+  user = document.getElementById("accountUsername").value;
+  email = document.getElementById("email").value;
+  oldPassword = document.getElementById("oldPassword").value;
+  newPassword = document.getElementById("newPassword").value;
+  var post = "username=" + user;
+  post = post + "&email=" + email;
+  post = post + "&oldPassword =" + oldPassword;
+  post = post + "&newPassword=" + newPassword;
+  post = post + "&actualUsername=" + username;
+  console.log(post);
+  http.onreadystatechange = userModified;
+  http.open("POST", "./modifyUserInfo.php", true);
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http.send(post);
 }
