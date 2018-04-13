@@ -12,6 +12,12 @@ try {
 }
 
 
+if ($_POST["email"] != "") {
+  $req = $dbh->prepare("UPDATE account SET email = :email WHERE username = :actualUser");
+  $req->bindParam(':email', $_POST["email"]);
+  $req->bindParam(':actualUser', $_POST["actualUsername"]);
+  $req->execute();
+}
 
 if ($_POST["username"] != "") {
   $req = $dbh->prepare("UPDATE account SET username = :username WHERE username = :actualUser");
@@ -20,6 +26,7 @@ if ($_POST["username"] != "") {
   $req->execute();
   $_SESSION["pseudo"] = $_POST["username"];
 }
+
 
 echo $_POST["username"];
 
