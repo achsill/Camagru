@@ -25,7 +25,7 @@
       <div class="profilDiv">
         <img id="profilPicture" src="img/default_pp.png" alt="">
         <p id="username">Username</p>
-        <button onclick="displayTakePicture()" type="button" name="button">
+        <button id="takePhotoBtn" onclick="displayTakePicture()" type="button" name="button">
           <img id="buttonCamera" src="img/camera.png" alt="" onclick="displayTakePicture()">
         </button>
       </div>
@@ -55,12 +55,16 @@
       <div class="videoContainer">
         <video id="video" autoplay></video>
         <div id="filter">
-          <img src="filters_images/lunettes.png" alt="">
+          <img id="filterSelected" src="filters_images/lunettes.png" alt="">
         </div>
       </div>
 
       <input type='file' id='getval' />
-
+      <div class="picture_filters">
+        <img onclick="selectFilter(hat_filter)" id="hat_filter" src="filters_images/hat.png"s alt="">
+        <img onclick="selectFilter(lunettes_filter)" id="lunettes_filter" src="filters_images/lunettes.png" alt="">
+        <img onclick="selectFilter(sayan_filter)" id="sayan_filter" src="filters_images/sayan.png" alt="">
+      </div>
       <img src="img/prev_arrow.png" onclick=prevCarousel(this.src) id="prevCarousel">
         <div id="carousel">
           <img id="finalPicture" src="" alt="">

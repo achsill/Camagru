@@ -8,6 +8,7 @@ var username = '';
 var usersPics = [];
 var userId = 0;
 var nbrPictures = 10;
+var filter_selected = "";
 getInfo();
 
 
@@ -62,6 +63,9 @@ function isUserLogged() {
             document.getElementById("disconnectButton").style.display = "block";
             document.getElementById("subscribeButton").style.display = "none";
             document.getElementById("username").innerHTML = username;
+        }
+        else {
+          document.getElementById("takePhotoBtn").style.display = "none";
         }
         usersPics = JSON.parse(result.files);
         printPictures();
@@ -153,4 +157,12 @@ function showMoreContent(pictureId, id) {
     document.getElementById("comments_" + pictureId).innerHTML = com;
     document.getElementById("toggleComments" + pictureId).innerHTML = 'Afficher tous les commentaires (' + (usersPics[id].com.length - 5) + ')';
   }
+}
+
+function selectFilter(filterName) {
+  if (filter_selected != filterName.id && filter_selected != "")
+    document.getElementById(filter_selected).style.boxShadow = "none";
+  filter_selected = filterName.id;
+  filterName.style.boxShadow = "1px 1px 2px 0px #656565";
+  document.getElementById("filterSelected").src = "filters_images/" + filterName.id.split("_")[0] + ".png";
 }

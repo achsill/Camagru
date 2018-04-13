@@ -12,7 +12,15 @@
 	$file = UPLOAD_DIR . uniqid() . '.png';
 	$success = file_put_contents($file, $data);
 
-  $sourceImage = './filters_images/lunettes_mid.png';
+  if ($_POST['filter'] == "lunettes_filter") {
+    $sourceImage = './filters_images/lunettes.png';
+  }
+  else if ($_POST['filter'] == "hat_filter"){
+    $sourceImage = './filters_images/hat.png';
+  }
+  else if ($_POST['filter'] == "sayan_filter"){
+    $sourceImage = './filters_images/sayan.png';
+  }
 
   $destImage = $file;
 

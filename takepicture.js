@@ -23,7 +23,8 @@ function sendPicture(image)
 {
     http = createRequestObject(image);
     var post = "image=" + image;
-
+    console.log(filter_selected);
+    post = post + "&filter=" + filter_selected
     http.onreadystatechange = handleAJAXReturn;
     http.open("POST", "./takepicture.php", true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -46,7 +47,6 @@ function handleAJAXReturn()
         }
         else
         {
-            alert('Pas glop pas glop');
         }
     }
 }
@@ -126,6 +126,7 @@ function disconnectReturn() {
         listOfPictures = [];
         document.getElementById("disconnectButton").style.display = "none";
         document.getElementById("subscribeButton").style.display = "block";
+        getInfo();
       }
     }
 }
@@ -143,9 +144,6 @@ function readURL(){
     var reader = new FileReader();
     reader.onloadend = function(){
       console.log(reader.result);
-       // document.getElementById('imageShowed').src = reader.result;
-       // document.getElementById('imageShowed').style.display = 'block';
-       // document.getElementById('close').style.display = 'block';
        sendPicture(reader.result);
    }
     if (file){
