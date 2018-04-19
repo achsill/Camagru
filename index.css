@@ -414,3 +414,11 @@ body {
   right: 4px;
   cursor: pointer;
 }
+
+#errorEditAccount {
+  text-align: center;
+  line-height: 1px;
+  font-size: 14px;
+  font-family: OpenSans-Regular;
+  color: red;
+}
