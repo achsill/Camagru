@@ -1,32 +1,21 @@
 <?php
-
-
-
+  require_once('connectDB.php');
   session_start();
-  // $_SESSION['id'] = 3;
-  // $_SESSION['pseudo'] = "tata";
+
   $dir    = 'user_pictures';
   $files = scandir($dir);
+  $dbh = new HandleDB();
 
-  $servername = "mysql:dbname=camagru;host=localhost:3307";
-  $username = "root";
-  $password = "rootroot";
-
-  try {
-  	$dbh = new PDO($servername, $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-  } catch (PDOException $e) {
-  	echo 'Connexion échouée : ' . $e->getMessage();
-  }
 
 function GetNbrOfLikes($id, $dbh) {
   $likes = array();
-  $sth = $dbh->prepare("SELECT * FROM likes");
+  $sth = $dbh->get_instance()->prepare("SELECT * FROM likes");
   $sth->execute();
 
   while($row = $sth->fetch(PDO::FETCH_ASSOC)) {
   	$thelike = new stdClass();
   	if (!is_null($row["pictureID"])) {
-  		$reqTmp = $dbh->prepare("SELECT * FROM likes WHERE pictureID = :pictureID");
+  		$reqTmp = $dbh->get_instance()->prepare("SELECT * FROM likes WHERE pictureID = :pictureID");
   		$reqTmp->bindParam(":pictureID", $id);
   		$reqTmp->execute();
   		$count = 0;
@@ -41,11 +30,11 @@ function GetNbrOfLikes($id, $dbh) {
   }
 }
 
-  $sth = $dbh->prepare("SELECT * FROM picture");
+  $sth = $dbh->get_instance()->prepare("SELECT * FROM picture");
   $sth->execute();
   $pictureEnd = array();
   while ($row = $sth->fetch(PDO::FETCH_ASSOC)) {
-    $tmp = $dbh->prepare("SELECT * FROM comment WHERE pictureID = :pictureID");
+    $tmp = $dbh->get_instance()->prepare("SELECT * FROM comment WHERE pictureID = :pictureID");
     $tmp->bindParam(':pictureID', $row['id']);
     $tmp->execute();
     $picture = new stdClass();

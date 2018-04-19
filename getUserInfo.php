@@ -1,15 +1,9 @@
 <?php
-  $servername = "mysql:dbname=camagru;host=localhost:3307";
-  $username = "root";
-  $password = "rootroot";
+  require_once('connectDB.php');
 
-  try {
-    $dbh = new PDO($servername, $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-  } catch (PDOException $e) {
-    echo 'Connexion échouée : ' . $e->getMessage();
-  }
+  $dbh = new HandleDB();
 
-  $sth = $dbh->prepare("SELECT * FROM account WHERE username = :username");
+  $sth = $dbh->get_instance()->prepare("SELECT * FROM account WHERE username = :username");
   $sth->bindParam(':username', $_POST['username']);
   $sth->execute();
 

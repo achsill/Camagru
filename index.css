@@ -79,7 +79,7 @@ body {
 
 #carousel {
   position: absolute;
-  bottom: 150px;
+  bottom: 107px;
   width: calc(100px * 4 + 4 * 5px);
   max-height: 75px;
   overflow: hidden;
@@ -94,7 +94,7 @@ body {
   width: 32px;
   height: 32px;
   position: absolute;
-  bottom: 170px;
+  bottom: 107px;
   left: calc(420px / 2 - 32px );
   cursor: pointer;
 }
@@ -103,7 +103,7 @@ body {
   width: 32px;
   height: 32px;
   position: absolute;
-  bottom: 170px;
+  bottom: 107px;
   right: calc(420px / 2 - 32px );
   cursor: pointer;
 }

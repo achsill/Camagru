@@ -11,22 +11,16 @@
   <body>
     <div class="modalConfirmation">
 <?php
-  $servername = "mysql:dbname=camagru;host=localhost:3306";
-  $username = "root";
-  $password = "root";
+  require_once('connectDB.php');
 
-  try {
-  	$db = new PDO($servername, $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-  } catch (PDOException $e) {
-  	echo 'Connexion échouée : ' . $e->getMessage();
-  }
+  private $db = new HandleDB();
 
-  $usernameExist = $db->prepare("SELECT accountKey FROM account WHERE username = :username");
+  $usernameExist = $db->get_instance()->prepare("SELECT accountKey FROM account WHERE username = :username");
   $usernameExist->bindParam('username', htmlspecialchars($_GET["log"]));
   $usernameExist->execute();
   $accountKey = ($usernameExist->fetch(PDO::FETCH_ASSOC)["accountKey"]);
   if ($accountKey == htmlspecialchars($_GET["cle"])) {
-    $usernameExist = $db->prepare("UPDATE account SET activated='1' WHERE username = :username");
+    $usernameExist = $db->get_instance()->prepare("UPDATE account SET activated='1' WHERE username = :username");
     $usernameExist->bindParam('username', htmlspecialchars($_GET["log"]));
     $usernameExist->execute();
     echo "<p class='sucess'>Your account has been successfully activated !</p>";

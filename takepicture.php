@@ -1,6 +1,11 @@
 <?php
+  require_once('connectDB.php');
   define('UPLOAD_DIR', 'user_pictures/');
   session_start();
+
+
+	$db = new HandleDB();
+
   if ($_SESSION['pseudo'] == '') {
     echo "-1";
     return 1;
@@ -52,18 +57,8 @@
    */
 
   imagejpeg($dest, $file,100);
-  $servername = "mysql:dbname=camagru;host=localhost:3307";
-  $username = "root";
-  $password = "rootroot";
 
-  try {
-    $dbh = new PDO($servername, $username, $password);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  } catch (PDOException $e) {
-    echo 'Failed';
-  }
-
-  $req = $dbh->prepare('INSERT INTO picture (nbrOfLike, nbrOfComments, name) VALUES ("0", "0", :filename)');
+  $req = $db->get_instance()->prepare('INSERT INTO picture (nbrOfLike, nbrOfComments, name) VALUES ("0", "0", :filename)');
   $req->bindParam(':filename', $file);
   $req->execute();
   print $file;

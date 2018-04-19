@@ -1,11 +1,12 @@
 <?php
-// include "config.php";
+require_once('connectDB.php');
 
 class User {
+
 	private $db;
 
-	function __construct($db) {
-		$this->db = $db;
+	function __construct($dbh) {
+		$this->db = $dbh;
   }
 
   function CreateUser($username, $password, $confirmPassword, $email) {
@@ -14,7 +15,7 @@ class User {
       return $securityErr;
 	  $hash_password = password_hash($password, PASSWORD_BCRYPT);
 		$accountKey = password_hash(microtime(TRUE)*100000 / rand(0, 100), PASSWORD_BCRYPT);
-	  $req = $this->db->prepare('INSERT INTO account (username, password, email, accountKey) VALUES (:username, :password, :email, :accountKey)');
+	  $req = $this->db->get_instance()->prepare('INSERT INTO account (username, password, email, accountKey) VALUES (:username, :password, :email, :accountKey)');
 	  $req->bindParam(':username', $username);
 	  $req->bindParam(':password', $hash_password);
 		$req->bindParam(':email', $email);
@@ -46,12 +47,12 @@ class User {
     $emailValue = 0;
     $usernameValue = 0;
 
-	  $usernameExist = $this->db->prepare("SELECT id FROM account WHERE username = :username");
+	  $usernameExist = $this->db->get_instance()->prepare("SELECT id FROM account WHERE username = :username");
 	  $usernameExist->bindParam('username', $username);
 	  $usernameExist->execute();
     $usernameValue = ($usernameExist->fetch(PDO::FETCH_ASSOC)["id"]);
 
-	  $emailExist = $this->db->prepare("SELECT id FROM account WHERE email = :email");
+	  $emailExist = $this->db->get_instance()->prepare("SELECT id FROM account WHERE email = :email");
 	  $emailExist->bindParam('email', $email);
 	  $emailExist->execute();
     $emailValue = ($emailExist->fetch(PDO::FETCH_ASSOC)["id"]);
@@ -96,20 +97,7 @@ class User {
    }
 }
 
-
-
-// TO CHANGE
-$servername = "mysql:dbname=camagru;host=localhost:3307";
-$username = "root";
-$password = "rootroot";
-
-try {
-	$db = new PDO($servername, $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-} catch (PDOException $e) {
-	echo 'Connexion échouée : ' . $e->getMessage();
-}
-// TO CHANGE
-
-$newUser = new User($db);
+$dbh = new HandleDB();
+$newUser = new User($dbh);
 echo $newUser->CreateUser($_POST['username'],$_POST['password'], $_POST['confirmPassword'], $_POST['email']);
 ?>

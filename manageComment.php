@@ -1,21 +1,14 @@
 <?php
-  $servername = "mysql:dbname=camagru;host=localhost:3307";
-  $username = "root";
-  $password = "rootroot";
+  require_once('connectDB.php');
 
-  try {
-    $dbh = new PDO($servername, $username, $password);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  } catch (PDOException $e) {
-    echo 'Failed';
-  }
+  $dbh = new HandleDB();
 
-  $req = $dbh->prepare('SELECT username FROM account WHERE id = :id');
+  $req = $dbh->get_instance()->prepare('SELECT username FROM account WHERE id = :id');
   $req->bindParam(':id', $_POST['userId']);
   $req->execute();
   $user = $req->fetch();
 
-  $req = $dbh->prepare('INSERT INTO comment (comment, pictureID, userName) VALUES (:commentText, :idPicture, :userName)');
+  $req = $dbh->get_instance()->prepare('INSERT INTO comment (comment, pictureID, userName) VALUES (:commentText, :idPicture, :userName)');
   $req->bindParam(':commentText', $_POST['commentText']);
   $req->bindParam(':idPicture', $_POST['pictureId']);
   $req->bindParam(':userName', $user['username']);

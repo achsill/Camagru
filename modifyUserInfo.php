@@ -1,18 +1,12 @@
 <?php
 
 session_start();
-$servername = "mysql:dbname=camagru;host=localhost:3307";
-$username = "root";
-$password = "rootroot";
+require_once('connectDB.php');
 
-try {
-  $dbh = new PDO($servername, $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-} catch (PDOException $e) {
-  echo 'Connexion échouée : ' . $e->getMessage();
-}
+$dbh = new HandleDB();
 
 if ($_POST["email"] != "") {
-  $req = $dbh->prepare("SELECT * FROM account WHERE username = :username");
+  $req = $dbh->get_instance()->prepare("SELECT * FROM account WHERE username = :username");
   $req->bindParam("username", $_POST["actualUsername"]);
   $req->execute();
   $row = $req->fetch(PDO::FETCH_ASSOC);
@@ -21,14 +15,14 @@ if ($_POST["email"] != "") {
     return ;
   }
 
-  $req = $dbh->prepare("UPDATE account SET email = :email WHERE username = :actualUser");
+  $req = $dbh->get_instance()->prepare("UPDATE account SET email = :email WHERE username = :actualUser");
   $req->bindParam(':email', $_POST["email"]);
   $req->bindParam(':actualUser', $_POST["actualUsername"]);
   $req->execute();
 }
 
 if ($_POST["username"] != "") {
-  $req = $dbh->prepare("SELECT * FROM account WHERE username = :username");
+  $req = $dbh->get_instance()->prepare("SELECT * FROM account WHERE username = :username");
   $req->bindParam("username", $_POST["username"]);
   $req->execute();
   $row = $req->fetch(PDO::FETCH_ASSOC);
@@ -37,7 +31,7 @@ if ($_POST["username"] != "") {
     return ;
   }
 
-  $req = $dbh->prepare("UPDATE account SET username = :username WHERE username = :actualUser");
+  $req = $dbh->get_instance()->prepare("UPDATE account SET username = :username WHERE username = :actualUser");
   $req->bindParam(':username', $_POST["username"]);
   $req->bindParam(':actualUser', $_POST["actualUsername"]);
   $req->execute();
@@ -45,7 +39,7 @@ if ($_POST["username"] != "") {
 }
 
 if ($_POST["oldPassword"] != "" && $_POST["newPassword"] != ""){
-  $req = $dbh->prepare("SELECT * FROM account WHERE username = :username");
+  $req = $dbh->get_instance()->prepare("SELECT * FROM account WHERE username = :username");
   $req->bindParam("username", $_POST["username"]);
   $req->execute();
   $row = $req->fetch(PDO::FETCH_ASSOC);
@@ -69,7 +63,7 @@ if ($_POST["oldPassword"] != "" && $_POST["newPassword"] != ""){
       return;
     }
 
-    $req = $dbh->prepare("UPDATE account SET password = :password WHERE username = :username");
+    $req = $dbh->get_instance()->prepare("UPDATE account SET password = :password WHERE username = :username");
     $req->bindParam(':password', $hash_newpassword);
     $req->bindParam(':username', $_POST["username"]);
     $req->execute();
