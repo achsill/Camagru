@@ -75,5 +75,5 @@ if ($_POST["oldPassword"] != "" && $_POST["newPassword"] != ""){
     $req->execute();
   }
 }
-echo $_POST["username"];
+echo "username=".$_POST["username"];
 ?>

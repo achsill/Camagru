@@ -190,9 +190,9 @@ function displayEditAccount() {
 function userModified() {
   if (http.readyState == 4) {
     if (http.status == 200) {
-      username = http.responseText;
-      console.log(http.responseText);
-      document.getElementById("errorEditAccount").innerHTML = http.responseText;
+      username = http.responseText.split("=")[1];
+      if (!http.responseText.includes("username="))
+        document.getElementById("errorEditAccount").innerHTML = http.responseText;
       getInfo();
     }
   }
