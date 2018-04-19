@@ -1,10 +1,12 @@
 <?php
   require_once('connectDB.php');
+  require_once('config/database.php');
+
   define('UPLOAD_DIR', 'user_pictures/');
   session_start();
 
 
-	$db = new HandleDB();
+	$db = new HandleDB($database);
 
   if ($_SESSION['pseudo'] == '') {
     echo "-1";

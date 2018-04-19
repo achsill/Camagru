@@ -1,10 +1,11 @@
 <?php
   require_once('connectDB.php');
+  require_once('config/database.php');
   session_start();
 
   $dir    = 'user_pictures';
   $files = scandir($dir);
-  $dbh = new HandleDB();
+  $dbh = new HandleDB($database);
 
 
 function GetNbrOfLikes($id, $dbh) {

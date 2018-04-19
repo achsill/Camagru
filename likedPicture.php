@@ -1,8 +1,9 @@
 <?php
 
 require_once('connectDB.php');
+require_once('config/database.php');
 
-$dbh = new HandleDB();
+$dbh = new HandleDB($database);
 
 $req = $dbh->get_instance()->prepare("SELECT * FROM likes WHERE pictureID = :pictureID AND userID = :userID");
 $req->bindParam(':pictureID', $_POST['pictureID']);

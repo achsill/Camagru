@@ -12,8 +12,9 @@
     <div class="modalConfirmation">
 <?php
   require_once('connectDB.php');
+  require_once('config/database.php');
 
-  private $db = new HandleDB();
+  private $db = new HandleDB($database);
 
   $usernameExist = $db->get_instance()->prepare("SELECT accountKey FROM account WHERE username = :username");
   $usernameExist->bindParam('username', htmlspecialchars($_GET["log"]));

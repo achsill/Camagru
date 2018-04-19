@@ -1,5 +1,6 @@
 <?php
 require_once('connectDB.php');
+require_once('config/database.php');
 
 class User {
 
@@ -97,7 +98,7 @@ class User {
    }
 }
 
-$dbh = new HandleDB();
+$dbh = new HandleDB($database);
 $newUser = new User($dbh);
 echo $newUser->CreateUser($_POST['username'],$_POST['password'], $_POST['confirmPassword'], $_POST['email']);
 ?>

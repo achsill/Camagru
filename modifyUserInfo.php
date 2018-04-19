@@ -2,8 +2,9 @@
 
 session_start();
 require_once('connectDB.php');
+require_once('config/database.php');
 
-$dbh = new HandleDB();
+$dbh = new HandleDB($database);
 
 if ($_POST["email"] != "") {
   $req = $dbh->get_instance()->prepare("SELECT * FROM account WHERE username = :username");

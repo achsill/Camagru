@@ -1,7 +1,8 @@
 <?php
 require_once('connectDB.php');
+require_once('config/database.php');
 
-$dbh = new HandleDB();
+$dbh = new HandleDB($database);
 
 $dbh->get_instance()->exec("CREATE DATABASE IF NOT EXISTS camagru;");
 $dbh->get_instance()->exec("USE camagru;");

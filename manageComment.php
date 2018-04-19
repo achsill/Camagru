@@ -1,7 +1,8 @@
 <?php
   require_once('connectDB.php');
+  require_once('config/database.php');
 
-  $dbh = new HandleDB();
+  $dbh = new HandleDB($database);
 
   $req = $dbh->get_instance()->prepare('SELECT username FROM account WHERE id = :id');
   $req->bindParam(':id', $_POST['userId']);

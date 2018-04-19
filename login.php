@@ -1,8 +1,9 @@
 
 <?php
 require_once('connectDB.php');
+require_once('config/database.php');
 
-$db = new HandleDB();
+$db = new HandleDB($database);
 $req = $db->get_instance()->prepare('SELECT id, password FROM account WHERE username = :username');
 $req->bindParam(':username', $_POST['email']);
 $req->execute();
