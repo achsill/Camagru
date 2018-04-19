@@ -58,15 +58,16 @@ function isUserLogged() {
         result = JSON.parse(http.responseText);
         if (result.connected != '-1') {
             userLogged = 1;
-            console.log(result.username);
             username = result.username;
             userId = result.id;
             document.getElementById("disconnectButton").style.display = "block";
             document.getElementById("subscribeButton").style.display = "none";
             document.getElementById("username").innerHTML = username;
+            document.getElementById("takePhotoBtn").style.display = "block";
+            document.getElementById("editAccount").style.display = "block";
         }
         else {
-          document.getElementById("takePhotoBtn").style.display = "none";
+
         }
         usersPics = JSON.parse(result.files);
         printPictures();
@@ -189,8 +190,8 @@ function displayEditAccount() {
 function userModified() {
   if (http.readyState == 4) {
     if (http.status == 200) {
+      console.log(http.responseText);
       username = http.responseText;
-      console.log(username);
       getInfo();
     }
   }
@@ -204,12 +205,15 @@ function editAccount() {
   newPassword = document.getElementById("newPassword").value;
   var post = "username=" + user;
   post = post + "&email=" + email;
-  post = post + "&oldPassword =" + oldPassword;
+  post = post + "&oldPassword=" + oldPassword;
   post = post + "&newPassword=" + newPassword;
   post = post + "&actualUsername=" + username;
-  console.log(post);
   http.onreadystatechange = userModified;
   http.open("POST", "./modifyUserInfo.php", true);
   http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   http.send(post);
+}
+
+function closeEditModal() {
+  document.getElementById("editAccountModal").style.display = "none";
 }

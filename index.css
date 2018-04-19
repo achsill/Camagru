@@ -223,7 +223,7 @@ body {
 }
 
 .profilDiv button {
-  display: block;
+  display: none;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
@@ -403,4 +403,14 @@ body {
 #editAccountModal h2 {
   font-family: Roboto-Regular;
   text-align: center;
+}
+
+
+#closeEditModal {
+  width: 20px;
+  z-index: 9;
+  top: 4px;
+  position: absolute;
+  right: 4px;
+  cursor: pointer;
 }
