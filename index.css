@@ -422,3 +422,16 @@ body {
   font-family: OpenSans-Regular;
   color: red;
 }
+
+.pictureUsername {
+  display: inline-block;
+  margin-left: 3px;
+}
+
+.trashPicture {
+  width: 16px;
+  float: right;
+  margin-right: 3px;
+  margin-top: 16px;
+  cursor: pointer;
+}

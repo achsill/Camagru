@@ -43,7 +43,7 @@ function printPictures() {
       }
       if (usersPics[i].com.length > 5)
         showMore = '<p id="toggleComments' + usersPics[i].id +'" onclick="showMoreContent(' + usersPics[i].id + ',' + i + ')" class="showMoreComments"> Afficher tous les commentaires (' + (usersPics[i].com.length - 5) + ')</p>'
-      content = content +'<div class="userPost" id="picture_' + usersPics[i].id + '">' + "<p>" + usersPics[i].username + "</p>"+ '<img  src=' + usersPics[i].name + ' alt="">' + '<div class="interact"> <div class="containLikeBtn"> <img onclick="likedPicture(' + usersPics[i].id + ')"class="likeBtn" src="img/like.png" alt=""> <p class="nbrLikes">'+  usersPics[i].nbrLikes + '</p> </div> <div class="containComment"></div> </div> <div class="commentContain"> <textarea id="comment_pic' + usersPics[i].id + '" class="commentText"> </textarea> <img onclick="sendComment(' + usersPics[i].id + ')" class="iconSend" src="img/send_icon.png"> </div> <div class="commentsList" id="comments_' + usersPics[i].id +'" >' + com + '</div>' + showMore + '</div>';
+      content = content +'<div class="userPost" id="picture_' + usersPics[i].id + '">' + "<p class='pictureUsername' >" + usersPics[i].username + "</p> <img onclick='deletePicture(" + usersPics[i].id + ")'class='trashPicture' src='img/trash.png'>"+ '<img  src=' + usersPics[i].name + ' alt="">' + '<div class="interact"> <div class="containLikeBtn"> <img onclick="likedPicture(' + usersPics[i].id + ')"class="likeBtn" src="img/like.png" alt=""> <p class="nbrLikes">'+  usersPics[i].nbrLikes + '</p> </div> <div class="containComment"></div> </div> <div class="commentContain"> <textarea id="comment_pic' + usersPics[i].id + '" class="commentText"> </textarea> <img onclick="sendComment(' + usersPics[i].id + ')" class="iconSend" src="img/send_icon.png"> </div> <div class="commentsList" id="comments_' + usersPics[i].id +'" >' + com + '</div>' + showMore + '</div>';
     }
     showMore = "";
     i--;
@@ -217,4 +217,20 @@ function editAccount() {
 
 function closeEditModal() {
   document.getElementById("editAccountModal").style.display = "none";
+}
+
+function deletePicture(id) {
+  var post = "pictureId=" + id;
+  http.onreadystatechange = deletePictureResponse;
+  http.open("POST", "./deletePicture.php", true);
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http.send(post);
+}
+
+function deletePictureResponse() {
+  if (http.readyState == 4) {
+    if (http.status == 200) {
+      getInfo();
+    }
+  }
 }
