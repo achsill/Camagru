@@ -38,9 +38,16 @@ function GetNbrOfLikes($id, $dbh) {
     $tmp = $dbh->get_instance()->prepare("SELECT * FROM comment WHERE pictureID = :pictureID");
     $tmp->bindParam(':pictureID', $row['id']);
     $tmp->execute();
+
+    $userRqt = $dbh->get_instance()->prepare('SELECT username FROM account WHERE id = :id');
+    $userRqt->bindParam(':id', $row['userID']);
+    $userRqt->execute();
+    $user = $userRqt->fetch();
+
     $picture = new stdClass();
     $picture->id = $row['id'];
     $picture->name = $row['name'];
+    $picture->username = $user["username"];
     $picture->nbrLikes = GetNbrOfLikes($row['id'], $dbh);
     $tmpCom = array();
     while ($pictureCom = $tmp->fetch(PDO::FETCH_ASSOC)) {

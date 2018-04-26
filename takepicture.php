@@ -25,7 +25,7 @@
   else if ($_POST['filter'] == "hat_filter"){
     $sourceImage = './filters_images/hat.png';
   }
-  else if ($_POST['filter'] == "sayan_filter"){
+  else {
     $sourceImage = './filters_images/sayan.png';
   }
 
@@ -60,8 +60,14 @@
 
   imagejpeg($dest, $file,100);
 
-  $req = $db->get_instance()->prepare('INSERT INTO picture (nbrOfLike, nbrOfComments, name) VALUES ("0", "0", :filename)');
+  $tmp = $db->get_instance()->prepare('SELECT id FROM account WHERE username = :username');
+  $tmp->bindParam(':username', $_SESSION['pseudo']);
+  $tmp->execute();
+  $user = $tmp->fetch();
+
+  $req = $db->get_instance()->prepare('INSERT INTO picture (nbrOfLike, userID, name) VALUES ("0", :userID, :filename)');
   $req->bindParam(':filename', $file);
+  $req->bindParam(':userID', $user["id"]);
   $req->execute();
   print $file;
 ?>

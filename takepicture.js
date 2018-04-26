@@ -23,8 +23,7 @@ function sendPicture(image)
 {
     http = createRequestObject(image);
     var post = "image=" + image;
-    console.log(filter_selected);
-    post = post + "&filter=" + filter_selected
+    post = post + "&filter=" + filter_selected;
     http.onreadystatechange = handleAJAXReturn;
     http.open("POST", "./takepicture.php", true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -38,7 +37,6 @@ function handleAJAXReturn()
         if (http.status == 200)
         {
           if (parseInt(http.responseText) != -1) {
-
             listOfPictures.push('<img id="' + listOfPictures.length + '" class="finalPicture" src="' + http.responseText + '" alt="" onclick=selectPicture(' + listOfPictures.length + ')>');
             numberOfPictures = listOfPictures.length - 1;
             limitPicture = numberOfPictures - 5;
