@@ -44,13 +44,12 @@ function printPictures() {
         }
       }
       if (usersPics[i].canDelete == 1) {
-        canDelete = "<img onclick='deletePicture(" + usersPics[i].id + ")'class='trashPicture' src='img/trash.png'>"
+        canDelete = '<p onclick=setProfilePicture("' + usersPics[i].name +'")> set as profile </p><img onclick=deletePicture(' + usersPics[i].id + ') class="trashPicture" src="img/trash.png">';
       }
       if (usersPics[i].com.length > 5)
         showMore = '<p id="toggleComments' + usersPics[i].id +'" onclick="showMoreContent(' + usersPics[i].id + ',' + i + ')" class="showMoreComments"> Afficher tous les commentaires (' + (usersPics[i].com.length - 5) + ')</p>'
       content = content +'<div class="userPost" id="picture_' + usersPics[i].id + '">' + "<p class='pictureUsername' >" + usersPics[i].username + "</p>" + canDelete + '<img  src=' + usersPics[i].name + ' alt="">' + '<div class="interact"> <div class="containLikeBtn"> <img onclick="likedPicture(' + usersPics[i].id + ')"class="likeBtn" src="img/like.png" alt=""> <p class="nbrLikes">'+  usersPics[i].nbrLikes + '</p> </div> <div class="containComment"></div> </div> <div class="commentContain"> <textarea id="comment_pic' + usersPics[i].id + '" class="commentText"> </textarea> <img onclick="sendComment(' + usersPics[i].id + ')" class="iconSend" src="img/send_icon.png"> </div> <div class="commentsList" id="comments_' + usersPics[i].id +'" >' + com + '</div>' + showMore + '</div>';
 
-      console.log(usersPics[i].canDelete);
     }
     showMore = "";
     i--;
@@ -67,11 +66,13 @@ function isUserLogged() {
             userLogged = 1;
             username = result.username;
             userId = result.id;
+            document.getElementById("profilPicture").src = result.profilPicture;
             document.getElementById("disconnectButton").style.display = "block";
             document.getElementById("subscribeButton").style.display = "none";
             document.getElementById("username").innerHTML = username;
             document.getElementById("takePhotoBtn").style.display = "block";
             document.getElementById("editAccount").style.display = "block";
+
         }
         else {
 
@@ -238,6 +239,22 @@ function deletePictureResponse() {
   if (http.readyState == 4) {
     if (http.status == 200) {
       getInfo();
+    }
+  }
+}
+
+function setProfilePicture(pictureName) {
+  var post = "pictureName=" + pictureName;
+  http.onreadystatechange = profilPictureResponse;
+  http.open("POST", "./profilPicture.php", true);
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http.send(post);
+}
+
+function profilPictureResponse() {
+  if (http.readyState == 4) {
+    if (http.status == 200) {
+      document.getElementById("profilPicture").src = http.responseText;
     }
   }
 }

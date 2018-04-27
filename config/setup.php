@@ -1,6 +1,6 @@
 <?php
-require_once('../connectDB.php');
-require_once('database.php');
+include('../connectDB.php');
+include('database.php');
 
 $dbh = new HandleDB($database);
 
@@ -12,6 +12,7 @@ $dbh->get_instance()->exec("CREATE TABLE IF NOT EXISTS account(
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   accountKey VARCHAR(255) NOT NULL,
+  profilPicture VARCHAR(255) NULL,
   activated INT(1) unsigned DEFAULT 0
   );
   ");

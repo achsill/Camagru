@@ -72,6 +72,6 @@ function GetNbrOfLikes($id, $dbh) {
     echo json_encode(array('connected' => "-1", 'files' => json_encode($pictureEnd)));
   }
   else {
-     echo json_encode(array('connected' => '1', 'id' => $_SESSION['id'], 'username' => $_SESSION['pseudo'], 'files' => json_encode($pictureEnd)));
+     echo json_encode(array('connected' => '1', 'id' => $_SESSION['id'], 'username' => $_SESSION['pseudo'], "profilPicture" => $userID["profilPicture"], 'files' => json_encode($pictureEnd)));
   }
 ?>
