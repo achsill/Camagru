@@ -7,7 +7,6 @@
   $files = scandir($dir);
   $dbh = new HandleDB($database);
 
-
 function GetNbrOfLikes($id, $dbh) {
   $likes = array();
   $sth = $dbh->get_instance()->prepare("SELECT * FROM likes");
@@ -34,6 +33,14 @@ function GetNbrOfLikes($id, $dbh) {
   $sth = $dbh->get_instance()->prepare("SELECT * FROM picture");
   $sth->execute();
   $pictureEnd = array();
+
+  $userIDrequest = $dbh->get_instance()->prepare("SELECT * FROM account WHERE username = :username");
+  $userIDrequest->bindParam(':username', $_SESSION["pseudo"]);
+  $userIDrequest->execute();
+  $userID = $userIDrequest->fetch();
+
+
+
   while ($row = $sth->fetch(PDO::FETCH_ASSOC)) {
     $tmp = $dbh->get_instance()->prepare("SELECT * FROM comment WHERE pictureID = :pictureID");
     $tmp->bindParam(':pictureID', $row['id']);
@@ -45,6 +52,10 @@ function GetNbrOfLikes($id, $dbh) {
     $user = $userRqt->fetch();
 
     $picture = new stdClass();
+    if ($userID["id"] == $row["userID"])
+      $picture->canDelete = 1;
+    else
+      $picture->canDelete = 0;
     $picture->id = $row['id'];
     $picture->name = $row['name'];
     $picture->username = $user["username"];
