@@ -103,3 +103,88 @@ function ToggleCard() {
 function gestionClick() {
   location.href = "index.html";
 }
+
+function togglePasswordForget(x) {
+  if (x == 1) {
+    document.getElementById("signInForm").style.display = 'none';
+    document.getElementById("passwordForgot").style.display = 'block';
+  }
+  else {
+    document.getElementById("signInForm").style.display = 'block';
+    document.getElementById("passwordForgot").style.display = 'none';
+  }
+}
+
+function resetPassword() {
+  http = createRequestObject();
+  var post = "email=" + document.getElementById('ResetLoginEmail').value;
+  console.log(document.getElementById('ResetLoginEmail').value);
+  http.onreadystatechange = resetPasswordReturn;
+  http.open("POST", "./passwordForgot.php", true);
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http.send(post);
+}
+
+function resetPasswordReturn() {
+  if (http.readyState == 4)
+  {
+      if (http.status == 200)
+      {
+
+      }
+  }
+}
+
+function changePasswordReturn() {
+  if (http.readyState == 4)
+  {
+      if (http.status == 200)
+      {
+
+      }
+  }
+}
+
+function changePassword() {
+  http = createRequestObject();
+  var post = "email=" + document.getElementById('ResetLoginEmail').value;
+
+  http.onreadystatechange = changePasswordReturn;
+  http.open("POST", "./passwordForgot.php", true);
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http.send(post);
+}
+
+function setNewPassword() {
+  console.log("titi");
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var log = url.searchParams.get("log");
+  var cle = url.searchParams.get("cle");
+
+  Rpassword = document.getElementById('resetPassword').value;
+  RconfirmPassword = document.getElementById('resetConfirmPassword').value;
+  console.log(log);
+  http = createRequestObject();
+  var post = "log=" + log;
+  post = post + "&cle=" + cle;
+  post = post + "&resetPassword=" + Rpassword;
+  post = post + "&resetConfirmPassword=" + RconfirmPassword;
+
+
+  http.onreadystatechange = setNewPasswordReturn;
+  http.open("POST", "./newResetPassword.php", true);
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http.send(post);
+}
+
+function setNewPasswordReturn() {
+  if (http.readyState == 4)
+  {
+    console.log(http.responseText);
+      if (http.status == 200)
+      {
+        location.href = "index.html";
+      }
+  }
+}

@@ -33,10 +33,19 @@
           <form method="post">
             <input id="LoginEmail" name="email" class="email" type="text" placeholder="Mail address or username">
             <input id="LoginPassword" name="password" class="password" type="password" placeholder="Password">
+            <p onclick="togglePasswordForget(1)" class="passwordForgot">Forgot your password?</p>
             <p id="errorSignupMsg2" class="formMsg">Error</p>
             <p id="okSignupMsg2" class="formMsg">Ok</p>
             <button onClick="SignInForm()" class="submitButton" type="button" class="btn_email">SEND</button>
             <p onClick="ToggleCard()" class="swapCard">Don't have an account? <span>Sign up</span></p>
+          </form>
+        </div>
+        <div id="passwordForgot" class="signForms">
+          <h2>PASSWORD FORGOTTEN</h2>
+          <form method="post">
+            <input id="ResetLoginEmail" name="email" class="email" type="text" placeholder="Mail address">
+            <p onclick="togglePasswordForget(0)" class="passwordForgot">Back to login</p>
+            <button onClick="resetPassword()" class="submitButton" type="button" class="btn_email">SEND</button>
           </form>
         </div>
       </div>

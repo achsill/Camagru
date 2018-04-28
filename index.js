@@ -66,13 +66,15 @@ function isUserLogged() {
             userLogged = 1;
             username = result.username;
             userId = result.id;
-            document.getElementById("profilPicture").src = result.profilPicture;
+            if (result.profilPicture == null)
+              document.getElementById("profilPicture").src = "img/default_pp.png";
+            else
+              document.getElementById("profilPicture").src = result.profilPicture;
             document.getElementById("disconnectButton").style.display = "block";
             document.getElementById("subscribeButton").style.display = "none";
             document.getElementById("username").innerHTML = username;
             document.getElementById("takePhotoBtn").style.display = "block";
             document.getElementById("editAccount").style.display = "block";
-
         }
         else {
 

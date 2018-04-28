@@ -13,6 +13,7 @@ $dbh->get_instance()->exec("CREATE TABLE IF NOT EXISTS account(
   password VARCHAR(255) NOT NULL,
   accountKey VARCHAR(255) NOT NULL,
   profilPicture VARCHAR(255) NULL,
+  resetToken VARCHAR(255) NULL,
   activated INT(1) unsigned DEFAULT 0
   );
   ");

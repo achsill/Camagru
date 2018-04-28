@@ -24,7 +24,7 @@ body {
   display: flex;           /* establish flex container */
   flex-direction: column;  /* make main axis vertical */
   justify-content: center; /* center items vertically, in this case */
-  align-items: center; 
+  align-items: center;
 }
 
 .sucess .error {
@@ -52,4 +52,21 @@ body {
   color: white;
   font-family: OpenSans-Regular;
   align-self:flex-end;
+}
+
+input[type=text],  input[type=submit], input[type=password]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 18px 0;
+    display: inline-block;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#resetPasswordTitle {
+  font-family: Roboto-Regular;
+  text-align: center;
 }

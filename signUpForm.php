@@ -15,7 +15,7 @@ class User {
     if ($securityErr != "Your account has been created, check your email.")
       return $securityErr;
 	  $hash_password = password_hash($password, PASSWORD_BCRYPT);
-		$accountKey = password_hash(microtime(TRUE)*100000 / rand(0, 100), PASSWORD_BCRYPT);
+		$accountKey = htmlspecialchars(password_hash(microtime(TRUE)*100000 / rand(0, 100), PASSWORD_BCRYPT));
 	  $req = $this->db->get_instance()->prepare('INSERT INTO account (username, password, email, accountKey) VALUES (:username, :password, :email, :accountKey)');
 	  $req->bindParam(':username', $username);
 	  $req->bindParam(':password', $hash_password);

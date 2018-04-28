@@ -122,3 +122,25 @@ input[type=text],  input[type=submit], input[type=password]{
 #okSignupMsg, #okSignupMsg2{
   color: green;
 }
+
+.passwordForgot {
+  font-size: 12px;
+  text-align: right;
+  margin-top: 0px;
+  font-family: OpenSans-Regular;
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+
+.passwordForgot:hover {
+  font-size: 12px;
+  text-align: right;
+  font-family: OpenSans-Regular;
+  margin-top: 0px;
+  margin-bottom: 40px;
+  color: #2ba7c4;
+}
+
+#passwordForgot {
+  display: none;
+}
