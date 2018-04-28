@@ -14,7 +14,7 @@
   require_once('connectDB.php');
   require_once('config/database.php');
 
-  private $db = new HandleDB($database);
+  $db = new HandleDB($database);
 
   $usernameExist = $db->get_instance()->prepare("SELECT accountKey FROM account WHERE username = :username");
   $usernameExist->bindParam('username', htmlspecialchars($_GET["log"]));
@@ -31,7 +31,7 @@
   }
 
 ?>
-  <button onClick="gestionClic()" class="redirectButton">HOME</button>
+  <button onClick="gestionClick()" class="redirectButton">HOME</button>
   </div>
   </body>
 </html>

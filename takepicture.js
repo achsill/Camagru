@@ -21,6 +21,7 @@ function createRequestObject()
 
 function sendPicture(image)
 {
+    document.getElementById("errorMsgFilter").style.display = "none";
     http = createRequestObject(image);
     var post = "image=" + image;
     post = post + "&filter=" + filter_selected;
@@ -36,6 +37,10 @@ function handleAJAXReturn()
     {
         if (http.status == 200)
         {
+          if (http.responseText == "Please select a filter") {
+            document.getElementById("errorMsgFilter").style.display = "block";
+            return ;
+          }
           if (parseInt(http.responseText) != -1) {
             listOfPictures.push('<img id="' + listOfPictures.length + '" class="finalPicture" src="' + http.responseText + '" alt="" onclick=selectPicture(' + listOfPictures.length + ')>');
             numberOfPictures = listOfPictures.length - 1;

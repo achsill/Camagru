@@ -63,13 +63,15 @@ function signInReturn() {
           document.getElementById("disconnectButton").style.display = "block";
         }
         else {
+          if (parseInt(result) == -1)
+            document.getElementById("errorSignupMsg2").innerHTML = "You're account need to be activated before loggin in";
+          else
+            document.getElementById("errorSignupMsg2").innerHTML = "Error while trying to log";
           document.getElementById("okSignupMsg2").style.display = 'none';
-          document.getElementById("errorSignupMsg2").innerHTML = "Error while trying to log";
           document.getElementById("errorSignupMsg2").style.display = 'block';
         }
       }
       else {
-        alert("Error");
       }
     }
 }
@@ -96,4 +98,8 @@ function ToggleCard() {
     document.getElementById("signUpForm").style.display = 'none';
     document.getElementById("signInForm").style.display = 'block';
   }
+}
+
+function gestionClick() {
+  location.href = "index.html";
 }

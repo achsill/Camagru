@@ -30,15 +30,15 @@ class User {
 		$entete = "From: activation@camagru.com" ;
 
 		// Le lien d'activation est composé du login(log) et de la clé(cle)
-		$message = 'Hi,
+		$message = 'Hi ' . $username . ',
 
-		Activate your account you foool.
+		Activate your account.
 
 		http://localhost:8080/validation.php?log='.urlencode($username).'&cle='.urlencode($accountKey).'
 
 
 		---------------
-		Ceci est un mail automatique, Merci de ne pas y répondre.';
+		This is an automatic mail, please do not answer.';
 		mail($destinataire, $sujet, $message, $entete) ;
 		return $securityErr;
   }

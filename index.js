@@ -44,7 +44,7 @@ function printPictures() {
         }
       }
       if (usersPics[i].canDelete == 1) {
-        canDelete = '<p onclick=setProfilePicture("' + usersPics[i].name +'")> set as profile </p><img onclick=deletePicture(' + usersPics[i].id + ') class="trashPicture" src="img/trash.png">';
+        canDelete = '<img src="img/setProfile.png" class="trashPicture" onclick=setProfilePicture("' + usersPics[i].name +'")><img onclick=deletePicture(' + usersPics[i].id + ') class="trashPicture" src="img/trash.png">';
       }
       if (usersPics[i].com.length > 5)
         showMore = '<p id="toggleComments' + usersPics[i].id +'" onclick="showMoreContent(' + usersPics[i].id + ',' + i + ')" class="showMoreComments"> Afficher tous les commentaires (' + (usersPics[i].com.length - 5) + ')</p>'

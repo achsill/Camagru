@@ -25,8 +25,12 @@
   else if ($_POST['filter'] == "hat_filter"){
     $sourceImage = './filters_images/hat.png';
   }
-  else {
+  else if($_POST['filter'] == "sayan_filter"){
     $sourceImage = './filters_images/sayan.png';
+  }
+  else {
+    echo "Please select a filter";
+    return 1;
   }
 
   $destImage = $file;

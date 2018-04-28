@@ -436,3 +436,10 @@ body {
   margin-top: 16px;
   cursor: pointer;
 }
+
+#errorMsgFilter {
+  bottom: 30px;
+  position: absolute;
+  color: red;
+  display: none;
+}
