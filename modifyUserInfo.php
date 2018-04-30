@@ -63,7 +63,6 @@ if ($_POST["oldPassword"] != "" && $_POST["newPassword"] != ""){
       echo "The password need to have at least 5 caracters";
       return;
     }
-
     $req = $dbh->get_instance()->prepare("UPDATE account SET password = :password WHERE username = :username");
     $req->bindParam(':password', $hash_newpassword);
     $req->bindParam(':username', $_POST["username"]);

@@ -118,7 +118,6 @@ function togglePasswordForget(x) {
 function resetPassword() {
   http = createRequestObject();
   var post = "email=" + document.getElementById('ResetLoginEmail').value;
-  console.log(document.getElementById('ResetLoginEmail').value);
   http.onreadystatechange = resetPasswordReturn;
   http.open("POST", "./passwordForgot.php", true);
   http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -130,6 +129,12 @@ function resetPasswordReturn() {
   {
       if (http.status == 200)
       {
+        document.getElementById("errorResetPwd").style.display = "block";
+        document.getElementById("errorResetPwd").innerHTML = http.responseText;
+        if (http.responseText == "This email adress does not exist")
+          document.getElementById("errorResetPwd").style.color = "red";
+        else if (http.responseText == "An email has been sent !")
+          document.getElementById("errorResetPwd").style.color = "green";
 
       }
   }
@@ -156,7 +161,6 @@ function changePassword() {
 }
 
 function setNewPassword() {
-  console.log("titi");
   var url_string = window.location.href;
   var url = new URL(url_string);
   var log = url.searchParams.get("log");
@@ -164,7 +168,6 @@ function setNewPassword() {
 
   Rpassword = document.getElementById('resetPassword').value;
   RconfirmPassword = document.getElementById('resetConfirmPassword').value;
-  console.log(log);
   http = createRequestObject();
   var post = "log=" + log;
   post = post + "&cle=" + cle;
@@ -181,10 +184,15 @@ function setNewPassword() {
 function setNewPasswordReturn() {
   if (http.readyState == 4)
   {
-    console.log(http.responseText);
       if (http.status == 200)
       {
-        location.href = "index.html";
+        if (http.responseText == "password changes") {
+          location.href = "index.html";
+        }
+        else {
+          document.getElementById("pwdError").style.display = "block";
+          document.getElementById("pwdError").innerHTML = http.responseText;
+        }
       }
   }
 }

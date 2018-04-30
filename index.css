@@ -205,9 +205,8 @@ body {
 #profilPicture {
   height: 128px;
   width: 128px;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+  margin: 0 auto;
+  display: none;
   border-radius: 100%;
 }
 
@@ -356,6 +355,7 @@ body {
 
 #username {
   font-family: 'Open Sans', sans-serif;
+  display: none;
 }
 
 #getval {
@@ -426,7 +426,9 @@ body {
 
 .pictureUsername {
   display: inline-block;
+  font-family: OpenSans-Regular;
   margin-left: 3px;
+  margin-left: 5px;
 }
 
 .trashPicture {

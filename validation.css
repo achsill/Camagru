@@ -70,3 +70,8 @@ input[type=text],  input[type=submit], input[type=password]{
   font-family: Roboto-Regular;
   text-align: center;
 }
+
+#pwdError {
+  display: none;
+  color: red;
+}
