@@ -25,19 +25,22 @@
   $req->bindParam(':id', $userId);
   $req->execute();
   $getMail = $req->fetch();
-  $email = $getMail["email"];
 
-  // Send mail
-  $destinataire = $email;
-  $sujet = "Nouveau commentaire !" ;
-  $entete = "From: activation@camagru.com" ;
+  if ($getMail["emailOnCom"] == 1) {
+    $email = $getMail["email"];
 
-  // Le lien d'activation est composé du login(log) et de la clé(cle)
-  $message = 'Hi,
+    // Send mail
+    $destinataire = $email;
+    $sujet = "Nouveau commentaire !" ;
+    $entete = "From: activation@camagru.com" ;
 
-  Someone commented one of your pictures !.
+    // Le lien d'activation est composé du login(log) et de la clé(cle)
+    $message = 'Hi,
 
-  ---------------
-  This is an automatic mail, please do not answer.';
-  mail($destinataire, $sujet, $message, $entete) ;
+    Someone commented one of your pictures !.
+
+    ---------------
+    This is an automatic mail, please do not answer.';
+    mail($destinataire, $sujet, $message, $entete) ;
+  }
 ?>

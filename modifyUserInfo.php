@@ -5,12 +5,17 @@ require_once('connectDB.php');
 require_once('config/database.php');
 
 $dbh = new HandleDB($database);
+$req = $dbh->get_instance()->prepare("UPDATE account SET emailOnCom = :emailOnCom WHERE username = :username");
+$req->bindParam("emailOnCom", $_POST["comNotification"]);
+$req->bindParam("username", $_POST["actualUsername"]);
+$req->execute();
+
 
 if ($_POST["email"] != "") {
   $req = $dbh->get_instance()->prepare("SELECT * FROM account WHERE username = :username");
   $req->bindParam("username", $_POST["actualUsername"]);
   $req->execute();
-  $row = $req->fetch(PDO::FETCH_ASSOC);
+  $row = $req->fetch();
   if ($row && $row["email"] != $_POST["email"]) {
     echo "This email is already used";
     return ;
@@ -26,7 +31,7 @@ if ($_POST["username"] != "") {
   $req = $dbh->get_instance()->prepare("SELECT * FROM account WHERE username = :username");
   $req->bindParam("username", $_POST["username"]);
   $req->execute();
-  $row = $req->fetch(PDO::FETCH_ASSOC);
+  $row = $req->fetch();
   if ($row && $_POST["actualUsername"] != $_POST["username"]) {
     echo "This username is already used";
     return ;
@@ -43,7 +48,7 @@ if ($_POST["oldPassword"] != "" && $_POST["newPassword"] != ""){
   $req = $dbh->get_instance()->prepare("SELECT * FROM account WHERE username = :username");
   $req->bindParam("username", $_POST["username"]);
   $req->execute();
-  $row = $req->fetch(PDO::FETCH_ASSOC);
+  $row = $req->fetch();
 
   $hash_newpassword = password_hash($_POST["newPassword"], PASSWORD_BCRYPT);
   if (!password_verify($_POST["oldPassword"], $row["password"])) {

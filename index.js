@@ -186,6 +186,10 @@ function getUserInfo() {
       result = JSON.parse(http.responseText);
       document.getElementById("email").value = result.email;
       document.getElementById("accountUsername").value = result.username;
+      if (result.emailOnCom == 1)
+        document.getElementById("comNotification").checked = true;
+      else
+        document.getElementById("comNotification").checked = false;
     }
   }
 }
@@ -202,6 +206,7 @@ function displayEditAccount() {
 function userModified() {
   if (http.readyState == 4) {
     if (http.status == 200) {
+      console.log(http.responseText);
       username = http.responseText.split("=")[1];
       if (!http.responseText.includes("username="))
         document.getElementById("errorEditAccount").innerHTML = http.responseText;
@@ -211,7 +216,7 @@ function userModified() {
 }
 
 function editAccount() {
-  // document.getElementById("editAccountModal").style.display = "block";
+  comNotification = ((document.getElementById("comNotification").checked == true) ? 1 : 0);
   user = document.getElementById("accountUsername").value;
   email = document.getElementById("email").value;
   oldPassword = document.getElementById("oldPassword").value;
@@ -221,6 +226,7 @@ function editAccount() {
   post = post + "&oldPassword=" + oldPassword;
   post = post + "&newPassword=" + newPassword;
   post = post + "&actualUsername=" + username;
+  post = post + "&comNotification=" + comNotification;
   http.onreadystatechange = userModified;
   http.open("POST", "./modifyUserInfo.php", true);
   http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
