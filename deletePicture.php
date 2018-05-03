@@ -6,6 +6,7 @@ session_start();
 $dir    = 'user_pictures';
 $dbh = new HandleDB($database);
 
+
 $tmp = $dbh->get_instance()->prepare("SELECT * FROM picture WHERE id = :id");
 $tmp->bindParam('id', $_POST["pictureId"]);
 $tmp->execute();
@@ -20,6 +21,11 @@ if (strcasecmp($username["username"], $_SESSION["pseudo"]) == 0) {
   $tmp = $dbh->get_instance()->prepare("DELETE FROM picture WHERE id = :id");
   $tmp->bindParam('id', $_POST["pictureId"]);
   $tmp->execute();
+}
+
+$filePath = realpath($user["name"]);
+if (is_writable($filePath)) {
+  unlink($filePath);
 }
 
 ?>

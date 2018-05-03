@@ -68,10 +68,18 @@ function GetNbrOfLikes($id, $dbh) {
     array_push($pictureEnd, $picture);
   }
 
+  $filePath = realpath($userID["profilPicture"]);
+  if ($filePath) {
+    $userPic = $userID["profilPicture"];
+  }
+  else {
+    $userPic = NULL;
+  }
+
   if ($_SESSION['id'] == '' || $_SESSION['pseudo'] == '') {
     echo json_encode(array('connected' => "-1", 'files' => json_encode($pictureEnd)));
   }
   else {
-     echo json_encode(array('connected' => '1', 'id' => $_SESSION['id'], 'username' => $_SESSION['pseudo'], "profilPicture" => $userID["profilPicture"], 'files' => json_encode($pictureEnd)));
+     echo json_encode(array('connected' => '1', 'id' => $_SESSION['id'], 'username' => $_SESSION['pseudo'], "profilPicture" => $userPic, 'files' => json_encode($pictureEnd)));
   }
 ?>

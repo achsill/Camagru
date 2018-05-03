@@ -25,5 +25,5 @@ else {
 	$req = null;
 }
 
-echo json_encode($likes);
+echo json_encode($like);
 ?>
