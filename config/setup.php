@@ -1,6 +1,7 @@
 <?php
-include('../connectDB.php');
-include('database.php');
+
+include(realpath(dirname(__FILE__) . '/../connectDB.php'));
+include(realpath(dirname(__FILE__) . '/database.php'));
 
 $dbh = new HandleDB($database);
 
