@@ -37,18 +37,19 @@ function printPictures() {
     var com = '';
     if (usersPics[i]) {
       if (usersPics[i].com.length > 0) {
-        k = 0;
-        while (usersPics[i].com[k] && k < 6) {
-          com = "<p><span class='username'>" + usersPics[i].com[k]["userName"] + ": </span>" + usersPics[i].com[k]["comment"] + "</p>" + com;
-          k++;
+        k = usersPics[i].com.length - 1;
+        tmp = k;
+        while (usersPics[i].com[k]) {
+          com = com + "<p><span class='username'>" + usersPics[i].com[k]["userName"] + ": </span>" + usersPics[i].com[k]["comment"] + "</p>";
+          k--;
         }
       }
       if (usersPics[i].canDelete == 1) {
         canDelete = '<img src="img/setProfile.png" class="trashPicture" onclick=setProfilePicture("' + usersPics[i].name +'")><img onclick=deletePicture(' + usersPics[i].id + ') class="trashPicture" src="img/trash.png">';
       }
-      if (usersPics[i].com.length > 5)
-        showMore = '<p id="toggleComments' + usersPics[i].id +'" onclick="showMoreContent(' + usersPics[i].id + ',' + i + ')" class="showMoreComments"> Afficher tous les commentaires (' + (usersPics[i].com.length - 5) + ')</p>'
-      content = content +'<div class="userPost" id="picture_' + usersPics[i].id + '">' + "<p class='pictureUsername' >" + usersPics[i].username + "</p>" + canDelete + '<img  src=' + usersPics[i].name + ' alt="">' + '<div class="interact"> <div class="containLikeBtn"> <img onclick="likedPicture(' + usersPics[i].id + ')"class="likeBtn" src="img/like.png" alt=""> <p class="nbrLikes">'+  usersPics[i].nbrLikes + '</p> </div> <div class="containComment"></div> </div> <div class="commentContain"> <textarea id="comment_pic' + usersPics[i].id + '" class="commentText"> </textarea> <img onclick="sendComment(' + usersPics[i].id + ')" class="iconSend" src="img/send_icon.png"> </div> <div class="commentsList" id="comments_' + usersPics[i].id +'" >' + com + '</div>' + showMore + '</div>';
+      // if (usersPics[i].com.length > 5)
+        // showMore = '<p id="toggleComments' + usersPics[i].id +'" onclick="showMoreContent(' + usersPics[i].id + ',' + i + ')" class="showMoreComments"> Afficher tous les commentaires (' + (usersPics[i].com.length - 5) + ')</p>'
+      content = content +'<div class="userPost" id="picture_' + usersPics[i].id + '">' + "<p class='pictureUsername' >" + usersPics[i].username + "</p>" + canDelete + '<img  src=' + usersPics[i].name + ' alt="">' + '<div class="interact"> <div class="containLikeBtn"> <img onclick="likedPicture(' + usersPics[i].id + ')"class="likeBtn" src="img/like.png" alt=""> <p class="nbrLikes">'+  usersPics[i].nbrLikes + '</p> </div> <div class="containComment"></div> </div> <div class="commentContain"> <textarea id="comment_pic' + usersPics[i].id + '" class="commentText"> </textarea> <img onclick="sendComment(' + usersPics[i].id + ')" class="iconSend" src="img/send_icon.png"> </div> <div class="commentsList" id="comments_' + usersPics[i].id +'" >' + com + '</div></div>';
 
     }
     showMore = "";
@@ -147,30 +148,33 @@ function callPhpComment(id, com) {
     }
 }
 
-function getComments(i, limit) {
-  k = 0;
-  com = "";
-  while (usersPics[i].com[k] && k < limit) {
-    com = "<p><span class='username'>" + usersPics[i].com[k]["userName"] + ": </span>" + usersPics[i].com[k]["comment"] + "</p>" + com;
-    k++;
-  }
-  return com;
-}
-
-function showMoreContent(pictureId, id) {
-  var content = document.getElementById("toggleComments" + pictureId).innerHTML;
-  if (content.includes("Afficher")) {
-    com = getComments(id, usersPics[id].com.length + 1);
-    document.getElementById("comments_" + pictureId).innerHTML = com;
-    document.getElementById("toggleComments" + pictureId).innerHTML = 'Masquer les commentaires';
-
-  }
-  else {
-    com = getComments(id, 5);
-    document.getElementById("comments_" + pictureId).innerHTML = com;
-    document.getElementById("toggleComments" + pictureId).innerHTML = 'Afficher tous les commentaires (' + (usersPics[id].com.length - 5) + ')';
-  }
-}
+// function getComments(i, limit) {
+//   k = usersPics[i].com.length-1;
+//   tmp = k;
+//   com = "";
+//
+//   console.log(usersPics[i].com[k]["comment"]);
+//   while (usersPics[i].com[k] && k > tmp - limit) {
+//     com = com + "<p><span class='username'>" + usersPics[i].com[k]["userName"] + ": </span>" + usersPics[i].com[k]["comment"] + "</p>" ;
+//     k--;
+//   }
+//   return com;
+// }
+//
+// function showMoreContent(pictureId, id) {
+//   var content = document.getElementById("toggleComments" + pictureId).innerHTML;
+//   if (content.includes("Afficher")) {
+//     com = getComments(id, usersPics[id].com.length - 1);
+//     document.getElementById("comments_" + pictureId).innerHTML = com;
+//     document.getElementById("toggleComments" + pictureId).innerHTML = 'Masquer les commentaires';
+//
+//   }
+//   else {
+//     com = getComments(id, 5);
+//     document.getElementById("comments_" + pictureId).innerHTML = com;
+//     document.getElementById("toggleComments" + pictureId).innerHTML = 'Afficher tous les commentaires (' + (usersPics[id].com.length - 5) + ')';
+//   }
+// }
 
 function selectFilter(filterName) {
   if (filter_selected != filterName.id && filter_selected != "")

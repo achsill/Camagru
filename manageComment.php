@@ -19,6 +19,7 @@
   $req->bindParam(':id', $_POST['pictureId']);
   $req->execute();
   $getUser = $req->fetch();
+
   $userId = $getUser["userID"];
 
   $req = $dbh->get_instance()->prepare('SELECT * FROM account WHERE id = :id');
@@ -43,4 +44,5 @@
     This is an automatic mail, please do not answer.';
     mail($destinataire, $sujet, $message, $entete) ;
   }
+
 ?>

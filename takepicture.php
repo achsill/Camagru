@@ -70,7 +70,7 @@
   $user = $tmp->fetch();
 
   $req = $db->get_instance()->prepare('INSERT INTO picture (nbrOfLike, userID, name) VALUES ("0", :userID, :filename)');
-  $req->bindParam(':filename', $file);
+  $req->bindParam(':filename', htmlspecialchars($file));
   $req->bindParam(':userID', $user["id"]);
   $req->execute();
   print $file;

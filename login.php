@@ -18,7 +18,7 @@ if ($isValid) {
 	}
 	session_start();
 	$_SESSION['id'] = $result['id'];
- 	$_SESSION['pseudo'] = $_POST['email'];
+ 	$_SESSION['pseudo'] = htmlspecialchars($_POST['email']);
 	echo "1";
 }
 else {

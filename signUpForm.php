@@ -34,7 +34,7 @@ class User {
 
 		Activate your account.
 
-		http://localhost:8080/validation.php?log='.urlencode($username).'&cle='.urlencode($accountKey).'
+		http://localhost:8080/validation.php?log='.urlencode(htmlspecialchars($username)).'&cle='.urlencode($accountKey).'
 
 
 		---------------

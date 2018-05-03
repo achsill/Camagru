@@ -58,7 +58,7 @@ function GetNbrOfLikes($id, $dbh) {
       $picture->canDelete = 0;
     $picture->id = $row['id'];
     $picture->name = $row['name'];
-    $picture->username = $user["username"];
+    $picture->username = htmlspecialchars($user["username"]);
     $picture->nbrLikes = GetNbrOfLikes($row['id'], $dbh);
     $tmpCom = array();
     while ($pictureCom = $tmp->fetch(PDO::FETCH_ASSOC)) {
