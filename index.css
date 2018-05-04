@@ -257,6 +257,15 @@ body {
 
 #subscribeButton {
   margin: auto;
+  background-color: #2ba7c4;
+  text-align: center;
+  padding: 5px 10px;
+  border:none;
+  -webkit-box-shadow: 2px 2px 6px 0px #000000;
+  box-shadow: 1px 1px 4px 0px #000000;
+  color: white;
+  font-style:  OpenSans-Regular;
+  cursor: pointer;
 }
 
 .header {
