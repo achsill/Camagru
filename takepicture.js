@@ -128,7 +128,7 @@ function disconnectReturn() {
       if (http.status == 200) {
         listOfPictures = [];
         document.getElementById("disconnectButton").style.display = "none";
-        document.getElementById("subscribeButton").style.display = "block";
+        document.getElementById("subscribeButton").style.display = "inline-block";
         getInfo();
       }
     }

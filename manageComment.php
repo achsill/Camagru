@@ -4,6 +4,10 @@
 
   $dbh = new HandleDB($database);
 
+  if ($_POST["commentText"] == " ") {
+    return 1;
+  }
+
   $req = $dbh->get_instance()->prepare('SELECT * FROM account WHERE id = :id');
   $req->bindParam(':id', $_POST['userId']);
   $req->execute();

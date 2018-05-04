@@ -23,7 +23,8 @@ body {
   margin-right: auto;
   width: 50%;
   height: 30px;
-  background-color: #2ba7c4;
+  background-color: grey;
+  cursor: not-allowed;
   border: none;
   color: white;
   font-family: OpenSans-Regular;

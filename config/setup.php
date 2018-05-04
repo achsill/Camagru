@@ -5,8 +5,6 @@ include(realpath(dirname(__FILE__) . '/database.php'));
 
 $dbh = new HandleDB($database);
 
-$dbh->get_instance()->exec("CREATE DATABASE IF NOT EXISTS camagru;");
-$dbh->get_instance()->exec("USE camagru;");
 $dbh->get_instance()->exec("CREATE TABLE IF NOT EXISTS account(
   id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(255) NOT NULL,

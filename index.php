@@ -62,7 +62,12 @@ function GetNbrOfLikes($id, $dbh) {
     $picture->nbrLikes = GetNbrOfLikes($row['id'], $dbh);
     $tmpCom = array();
     while ($pictureCom = $tmp->fetch(PDO::FETCH_ASSOC)) {
-      array_push($tmpCom, $pictureCom);
+      $newCom = new stdClass();
+      $newCom->id = $pictureCom["id"];
+      $newCom->pictureID = $pictureCom["pictureID"];
+      $newCom->userName = htmlspecialchars($pictureCom["userName"]);
+      $newCom->comment = htmlspecialchars($pictureCom["comment"]);
+      array_push($tmpCom, $newCom);
     }
     $picture->com = $tmpCom;
     array_push($pictureEnd, $picture);
@@ -80,6 +85,6 @@ function GetNbrOfLikes($id, $dbh) {
     echo json_encode(array('connected' => "-1", 'files' => json_encode($pictureEnd)));
   }
   else {
-     echo json_encode(array('connected' => '1', 'id' => $_SESSION['id'], 'username' => $_SESSION['pseudo'], "profilPicture" => $userPic, 'files' => json_encode($pictureEnd)));
+     echo json_encode(array('connected' => '1', 'id' => $_SESSION['id'], 'username' => htmlspecialchars($_SESSION['pseudo']), "profilPicture" => $userPic, 'files' => json_encode($pictureEnd)));
   }
 ?>
