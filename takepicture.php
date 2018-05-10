@@ -12,12 +12,36 @@
     echo "-1";
     return 1;
   }
+
 	$img = $_POST['image'];
-	$img = str_replace('data:image/png;base64,', '', $img);
-	$img = str_replace(' ', '+', $img);
-	$data = base64_decode($img);
-	$file = UPLOAD_DIR . uniqid() . '.png';
-	$success = file_put_contents($file, $data);
+
+  if(strpos($img, "png") !== false ) {
+    $img = str_replace('data:image/png;base64,', '', $img);
+  	$img = str_replace(' ', '+', $img);
+  	$data = base64_decode($img);
+    $file = UPLOAD_DIR . uniqid() . '.png';
+    $success = file_put_contents($file, $data);
+  }
+  else if (strpos($img, "jpeg") !== false ){
+    $img = str_replace('data:image/jpeg;base64,', '', $img);
+  	$img = str_replace(' ', '+', $img);
+  	$data = base64_decode($img);
+    $file = UPLOAD_DIR . uniqid() . '.jpeg';
+    $success = file_put_contents($file, $data);
+  }
+  else if (strpos($img, "jpg") !== false ){
+    $img = str_replace('data:image/jpg;base64,', '', $img);
+    $img = str_replace(' ', '+', $img);
+    $data = base64_decode($img);
+    $file = UPLOAD_DIR . uniqid() . '.jpg';
+    $success = file_put_contents($file, $data);
+  }
+  else {
+    echo "Need a picture";
+    return 1;
+  }
+
+
 
   if ($_POST['filter'] == "lunettes_filter") {
     $sourceImage = './filters_images/lunettes.png';
@@ -42,7 +66,11 @@
   $src = imagecreatefrompng($sourceImage);
 
   //create a new image from the destination image
-  $dest = imagecreatefrompng($destImage);
+  if (mime_content_type($destImage) == "image/png")
+    $dest = imagecreatefrompng($destImage);
+  else {
+    $dest =  imagecreatefromjpeg($destImage);
+  }
 
   //set the x and y positions of the source image on top of the destination image
   $src_xPosition = 250 - 82; //75 pixels from the left
@@ -70,7 +98,7 @@
   $user = $tmp->fetch();
 
   $req = $db->get_instance()->prepare('INSERT INTO picture (nbrOfLike, userID, name) VALUES ("0", :userID, :filename)');
-  $req->bindParam(':filename', htmlspecialchars($file));
+  $req->bindParam(':filename', $file);
   $req->bindParam(':userID', $user["id"]);
   $req->execute();
   print $file;

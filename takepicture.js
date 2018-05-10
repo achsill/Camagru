@@ -37,7 +37,7 @@ function handleAJAXReturn()
     {
         if (http.status == 200)
         {
-          if (http.responseText == "Please select a filter") {
+          if (http.responseText == "Please select a filter" || http.responseText == "Need a picture") {
             document.getElementById("errorMsgFilter").style.display = "block";
             return ;
           }
@@ -146,12 +146,10 @@ function readURL(){
     var file = document.getElementById("getval").files[0];
     var reader = new FileReader();
     reader.onloadend = function(){
-      console.log(reader.result);
        sendPicture(reader.result);
    }
     if (file){
       reader.readAsDataURL(file);
-
     }
     else {
   }

@@ -75,7 +75,6 @@ function isUserLogged() {
             document.getElementById("disconnectButton").style.display = "block";
             document.getElementById("subscribeButton").style.display = "none";
             document.getElementById("username").style.display = "block";
-            console.log(username);
             document.getElementById("username").innerHTML = username;
             document.getElementById("takePhotoBtn").style.display = "block";
             document.getElementById("editAccount").style.display = "block";
